@@ -2,6 +2,9 @@ import { render } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import { formatTokensCompact, GardenColor, GardenKind, KindRarity } from '../shared.js'
 
+declare function acquireVsCodeApi(): { postMessage(message: unknown): void }
+const vscode = acquireVsCodeApi()
+
 interface AtlasRect {
   x: number
   y: number
@@ -46,6 +49,7 @@ function App() {
       setData({ state: event.data.state, tilesetUri: event.data.tilesetUri, rect: event.data.rect })
     }
     window.addEventListener('message', onMessage)
+    vscode.postMessage({ type: 'ready' })
     return () => window.removeEventListener('message', onMessage)
   }, [])
 

@@ -23,20 +23,10 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
     statsViewProvider.update(service.stats())
   }
 
-  // Une vue peut se résoudre avant que le premier refresh() n'ait fini de tourner (I/O des logs
-  // Claude Code) : sans ce refresh() supplémentaire déclenché à la résolution, la webview
-  // resterait vide jusqu'au prochain cycle périodique (jusqu'à refreshIntervalSeconds plus tard).
-  const onResolved = (provider: vscode.WebviewViewProvider): vscode.WebviewViewProvider => ({
-    resolveWebviewView: (...args) => {
-      provider.resolveWebviewView(...args)
-      void refresh()
-    },
-  })
-
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider(CompanionViewProvider.viewId, onResolved(companionViewProvider)),
-    vscode.window.registerWebviewViewProvider(PantryViewProvider.viewId, onResolved(pantryViewProvider)),
-    vscode.window.registerWebviewViewProvider(StatsViewProvider.viewId, onResolved(statsViewProvider)),
+    vscode.window.registerWebviewViewProvider(CompanionViewProvider.viewId, companionViewProvider),
+    vscode.window.registerWebviewViewProvider(PantryViewProvider.viewId, pantryViewProvider),
+    vscode.window.registerWebviewViewProvider(StatsViewProvider.viewId, statsViewProvider),
   )
 
   await refresh()

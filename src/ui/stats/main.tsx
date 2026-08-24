@@ -2,6 +2,9 @@ import { render } from 'preact'
 import { useEffect, useState } from 'preact/hooks'
 import { formatTokensCompact, GardenColor, GardenKind, KindRarity } from '../shared.js'
 
+declare function acquireVsCodeApi(): { postMessage(message: unknown): void }
+const vscode = acquireVsCodeApi()
+
 interface GardenCounts {
   tree: Record<GardenColor, number>
   crop: Record<GardenColor, number>
@@ -71,6 +74,7 @@ function App() {
       setStats(event.data.stats)
     }
     window.addEventListener('message', onMessage)
+    vscode.postMessage({ type: 'ready' })
     return () => window.removeEventListener('message', onMessage)
   }, [])
 

@@ -17,25 +17,33 @@ export class PantryViewProvider implements vscode.WebviewViewProvider {
 
   private view: vscode.WebviewView | null = null
   private latestEntries: HarvestEntry[] | null = null
+  private isReady = false
 
   constructor(private readonly extensionUri: vscode.Uri) {}
 
   resolveWebviewView(webviewView: vscode.WebviewView): void {
     this.view = webviewView
+    this.isReady = false
     webviewView.webview.options = {
       enableScripts: true,
       localResourceRoots: [this.extensionUri],
     }
     webviewView.webview.html = this.renderHtml(webviewView.webview)
 
-    if (this.latestEntries) {
-      this.postEntries(this.latestEntries)
-    }
+    // Le script de la webview se charge en async : un postMessage envoyé avant qu'il ait attaché
+    // son listener 'message' est perdu. La webview signale donc qu'elle est prête à le recevoir.
+    webviewView.webview.onDidReceiveMessage((message: { type: string }) => {
+      if (message.type !== 'ready') return
+      this.isReady = true
+      if (this.latestEntries) {
+        this.postEntries(this.latestEntries)
+      }
+    })
   }
 
   update(entries: HarvestEntry[]): void {
     this.latestEntries = entries
-    if (!this.view) return
+    if (!this.view || !this.isReady) return
     this.postEntries(entries)
   }
 
