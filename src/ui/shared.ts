@@ -1,4 +1,7 @@
-function formatTokensCompact(value) {
+type GardenKind = 'tree' | 'crop'
+type GardenColor = 'normal' | 'silver' | 'gold'
+
+export function formatTokensCompact(value: number): string {
   const abs = Math.abs(value)
   const sign = value < 0 ? '-' : ''
   if (abs < 1_000) return `${value}`
@@ -7,17 +10,17 @@ function formatTokensCompact(value) {
   return sign + trim(abs / 1_000_000_000, 2) + 'B'
 }
 
-function trim(value, decimals) {
+function trim(value: number, decimals: number): string {
   return value.toFixed(decimals).replace(/\.?0+$/, '')
 }
 
-const KIND_ICONS = { tree: '🌳', crop: '🌱' }
-const KIND_LABELS = { tree: 'Tree', crop: 'Crop' }
+const KIND_ICONS: Record<GardenKind, string> = { tree: '🌳', crop: '🌱' }
+const KIND_LABELS: Record<GardenKind, string> = { tree: 'Tree', crop: 'Crop' }
 
 // Rend "kind" en emoji + label texte, plus une étoile grise/dorée uniquement pour silver/gold
 // (normal n'a pas d'étoile : la couleur normal était visuellement trop proche de silver en badge
 // plein, l'étoile seule suffit à signaler la rareté sans avoir besoin d'une 3e couleur de badge).
-function renderKindAndRarity(container, kind, color) {
+export function renderKindAndRarity(container: HTMLElement, kind: GardenKind | null, color: GardenColor | null): void {
   container.innerHTML = ''
   if (!kind) return
 
@@ -37,3 +40,4 @@ function renderKindAndRarity(container, kind, color) {
     container.appendChild(star)
   }
 }
+

@@ -1,15 +1,42 @@
-const emptyState = document.getElementById('empty-state')
-const basketList = document.getElementById('basket-list')
+import { renderKindAndRarity } from '../shared.js'
+
+type GardenKind = 'tree' | 'crop'
+type GardenColor = 'normal' | 'silver' | 'gold'
+
+interface AtlasRect {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+interface BasketViewModel {
+  speciesId: string
+  speciesName: string
+  kind: GardenKind
+  color: GardenColor
+  count: number
+  rect: AtlasRect | null
+}
+
+interface BasketsMessage {
+  type: 'baskets'
+  baskets: BasketViewModel[]
+  tilesetUri: string
+}
+
+const emptyState = document.getElementById('empty-state')!
+const basketList = document.getElementById('basket-list')!
 
 const SCALE = 2
 
-window.addEventListener('message', (event) => {
+window.addEventListener('message', (event: MessageEvent<BasketsMessage>) => {
   const message = event.data
   if (message.type !== 'baskets') return
   render(message.baskets, message.tilesetUri)
 })
 
-function render(baskets, tilesetUri) {
+function render(baskets: BasketViewModel[], tilesetUri: string): void {
   emptyState.style.display = baskets.length === 0 ? 'block' : 'none'
   basketList.innerHTML = ''
 
@@ -18,7 +45,7 @@ function render(baskets, tilesetUri) {
   }
 }
 
-function renderBasket(basket, tilesetUri) {
+function renderBasket(basket: BasketViewModel, tilesetUri: string): HTMLElement {
   const row = document.createElement('div')
   row.className = 'basket-entry'
 
@@ -55,7 +82,7 @@ function renderBasket(basket, tilesetUri) {
   return row
 }
 
-function textSpan(text, className) {
+function textSpan(text: string, className: string): HTMLElement {
   const span = document.createElement('span')
   span.className = className
   span.textContent = text

@@ -1,23 +1,56 @@
-const spriteOuterEl = document.getElementById('sprite-outer')
-const spriteEl = document.getElementById('sprite')
-const nameEl = document.getElementById('name')
-const kindRarityEl = document.getElementById('kind-rarity')
-const stageTextEl = document.getElementById('stage-text')
-const progressFill = document.getElementById('progress-fill')
-const remainingTextEl = document.getElementById('remaining-text')
+import { formatTokensCompact, renderKindAndRarity } from '../shared.js'
+
+type GardenKind = 'tree' | 'crop'
+type GardenColor = 'normal' | 'silver' | 'gold'
+
+interface AtlasRect {
+  x: number
+  y: number
+  width: number
+  height: number
+}
+
+interface CompanionViewState {
+  speciesId: string | null
+  speciesName: string | null
+  kind: GardenKind | null
+  color: GardenColor | null
+  stageIndex: number | null
+  totalStages: number | null
+  usedAtStage: number
+  stageThreshold: number | null
+  usedSinceInstall: number
+  aiTokensSinceInstall: number
+  typedTokensSinceInstall: number
+}
+
+interface StateMessage {
+  type: 'state'
+  state: CompanionViewState
+  tilesetUri: string
+  rect: AtlasRect | null
+}
+
+const spriteOuterEl = document.getElementById('sprite-outer')!
+const spriteEl = document.getElementById('sprite')!
+const nameEl = document.getElementById('name')!
+const kindRarityEl = document.getElementById('kind-rarity')!
+const stageTextEl = document.getElementById('stage-text')!
+const progressFill = document.getElementById('progress-fill') as HTMLElement
+const remainingTextEl = document.getElementById('remaining-text')!
 
 // Le tileset natif est petit (32-64px) : agrandi à l'affichage pour rester lisible dans la
 // sidebar, via transform plutôt que background-size (évite d'avoir besoin des dimensions
 // totales du PNG, seul le rect de la tuile courante suffit).
-const SCALE = 3
+const SCALE = 2
 
-window.addEventListener('message', (event) => {
+window.addEventListener('message', (event: MessageEvent<StateMessage>) => {
   const message = event.data
   if (message.type !== 'state') return
   render(message.state, message.tilesetUri, message.rect)
 })
 
-function render(state, tilesetUri, rect) {
+function render(state: CompanionViewState, tilesetUri: string, rect: AtlasRect | null): void {
   if (state.speciesId === null || !rect) {
     spriteOuterEl.style.width = '0px'
     spriteOuterEl.style.height = '0px'

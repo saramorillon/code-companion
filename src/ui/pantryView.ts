@@ -78,16 +78,13 @@ export class PantryViewProvider implements vscode.WebviewViewProvider {
 
   private renderHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'pantry', 'main.js')),
+      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'pantry', 'main.js')),
     )
     const styleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'pantry', 'styles.css')),
     )
     const sharedStyleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'shared.css')),
-    )
-    const sharedScriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'shared.js')),
     )
 
     return `<!DOCTYPE html>
@@ -101,7 +98,6 @@ export class PantryViewProvider implements vscode.WebviewViewProvider {
 <body>
   <div id="empty-state">No harvests yet.</div>
   <div id="basket-list"></div>
-  <script src="${sharedScriptUri.toString()}"></script>
   <script src="${scriptUri.toString()}"></script>
 </body>
 </html>`

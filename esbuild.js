@@ -2,7 +2,7 @@ import { context, build } from 'esbuild'
 
 const watch = process.argv.includes('--watch')
 
-const options = {
+const extensionOptions = {
   entryPoints: ['src/extension.ts'],
   bundle: true,
   outfile: 'dist/extension.js',
@@ -13,12 +13,23 @@ const options = {
   minify: !watch,
 }
 
+const webviewOptions = {
+  entryPoints: ['src/ui/webview/main.ts', 'src/ui/pantry/main.ts', 'src/ui/stats/main.ts'],
+  bundle: true,
+  outbase: 'src/ui',
+  outdir: 'dist/ui',
+  format: 'iife',
+  platform: 'browser',
+  sourcemap: true,
+  minify: !watch,
+}
+
 async function run() {
   if (watch) {
-    const ctx = await context(options)
-    await ctx.watch()
+    const [extensionCtx, webviewCtx] = await Promise.all([context(extensionOptions), context(webviewOptions)])
+    await Promise.all([extensionCtx.watch(), webviewCtx.watch()])
   } else {
-    await build(options)
+    await Promise.all([build(extensionOptions), build(webviewOptions)])
   }
 }
 

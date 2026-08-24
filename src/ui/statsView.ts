@@ -32,16 +32,13 @@ export class StatsViewProvider implements vscode.WebviewViewProvider {
 
   private renderHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'stats', 'main.js')),
+      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'stats', 'main.js')),
     )
     const styleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'stats', 'styles.css')),
     )
     const sharedStyleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'shared.css')),
-    )
-    const sharedScriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'shared.js')),
     )
 
     return `<!DOCTYPE html>
@@ -98,7 +95,6 @@ export class StatsViewProvider implements vscode.WebviewViewProvider {
       </div>
     </div>
   </div>
-  <script src="${sharedScriptUri.toString()}"></script>
   <script src="${scriptUri.toString()}"></script>
 </body>
 </html>`

@@ -49,16 +49,13 @@ export class CompanionViewProvider implements vscode.WebviewViewProvider {
 
   private renderHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'webview', 'main.js')),
+      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'webview', 'main.js')),
     )
     const styleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'webview', 'styles.css')),
     )
     const sharedStyleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'shared.css')),
-    )
-    const sharedScriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'shared.js')),
     )
 
     return `<!DOCTYPE html>
@@ -84,7 +81,6 @@ export class CompanionViewProvider implements vscode.WebviewViewProvider {
     <div id="progress-bar"><div id="progress-fill"></div></div>
     <div id="remaining-text"></div>
   </div>
-  <script src="${sharedScriptUri.toString()}"></script>
   <script src="${scriptUri.toString()}"></script>
 </body>
 </html>`

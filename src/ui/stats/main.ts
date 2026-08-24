@@ -1,24 +1,62 @@
-const harvestedCountEl = document.getElementById('harvested-count')
-const countsListEl = document.getElementById('counts-list')
-const todayTokensEl = document.getElementById('today-tokens')
-const todayCharsEl = document.getElementById('today-chars')
-const ratioDonutEl = document.getElementById('ratio-donut')
-const ratioAiPctEl = document.getElementById('ratio-ai-pct')
-const ratioTypedPctEl = document.getElementById('ratio-typed-pct')
-const weekChartEl = document.getElementById('week-chart')
-const bestDayCardEl = document.getElementById('best-day-card')
-const bestDayValueEl = document.getElementById('best-day-value')
-const bestDayDateEl = document.getElementById('best-day-date')
+import { formatTokensCompact, renderKindAndRarity } from '../shared.js'
+
+type GardenKind = 'tree' | 'crop'
+type GardenColor = 'normal' | 'silver' | 'gold'
+
+interface GardenCounts {
+  tree: Record<GardenColor, number>
+  crop: Record<GardenColor, number>
+}
+
+interface DayUsage {
+  date: string
+  aiTokens: number
+  typedTokens: number
+}
+
+interface BestDay {
+  date: string
+  aiTokens: number
+  typedTokens: number
+}
+
+interface CompanionStats {
+  harvestedCount: number
+  counts: GardenCounts
+  todayTokens: number
+  todayChars: number
+  aiTokensSinceInstall: number
+  typedTokensSinceInstall: number
+  weekHistory: DayUsage[]
+  bestDay: BestDay | null
+}
+
+interface StatsMessage {
+  type: 'stats'
+  stats: CompanionStats
+}
+
+const harvestedCountEl = document.getElementById('harvested-count')!
+const countsListEl = document.getElementById('counts-list')!
+const todayTokensEl = document.getElementById('today-tokens')!
+const todayCharsEl = document.getElementById('today-chars')!
+const ratioDonutEl = document.getElementById('ratio-donut') as HTMLElement
+const ratioAiPctEl = document.getElementById('ratio-ai-pct')!
+const ratioTypedPctEl = document.getElementById('ratio-typed-pct')!
+const weekChartEl = document.getElementById('week-chart')!
+const bestDayCardEl = document.getElementById('best-day-card') as HTMLElement
+const bestDayValueEl = document.getElementById('best-day-value')!
+const bestDayDateEl = document.getElementById('best-day-date')!
 
 const weekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
-window.addEventListener('message', (event) => {
+window.addEventListener('message', (event: MessageEvent<StatsMessage>) => {
   const message = event.data
   if (message.type !== 'stats') return
   render(message.stats)
 })
 
-const COUNT_ROWS = [
+const COUNT_ROWS: { kind: GardenKind; color: GardenColor }[] = [
   { kind: 'tree', color: 'normal' },
   { kind: 'tree', color: 'silver' },
   { kind: 'tree', color: 'gold' },
@@ -27,8 +65,8 @@ const COUNT_ROWS = [
   { kind: 'crop', color: 'gold' },
 ]
 
-function render(stats) {
-  harvestedCountEl.textContent = stats.harvestedCount
+function render(stats: CompanionStats): void {
+  harvestedCountEl.textContent = `${stats.harvestedCount}`
   renderCounts(stats.counts)
   todayTokensEl.textContent = formatTokensCompact(stats.todayTokens)
   todayCharsEl.textContent = formatTokensCompact(stats.todayChars)
@@ -43,7 +81,7 @@ function render(stats) {
   renderBestDay(stats.bestDay)
 }
 
-function renderCounts(counts) {
+function renderCounts(counts: GardenCounts): void {
   countsListEl.innerHTML = ''
   for (const { kind, color } of COUNT_ROWS) {
     const row = document.createElement('div')
@@ -55,21 +93,21 @@ function renderCounts(counts) {
 
     const value = document.createElement('span')
     value.className = 'stat-value'
-    value.textContent = counts[kind][color]
+    value.textContent = `${counts[kind][color]}`
     row.appendChild(value)
 
     countsListEl.appendChild(row)
   }
 }
 
-function renderBestDay(bestDay) {
+function renderBestDay(bestDay: BestDay | null): void {
   if (!bestDay) {
     bestDayCardEl.style.display = 'none'
     return
   }
   bestDayCardEl.style.display = 'flex'
 
-  const [year, month, dayOfMonth] = bestDay.date.split('-').map(Number)
+  const [year, month, dayOfMonth] = bestDay.date.split('-').map(Number) as [number, number, number]
   const date = new Date(year, month - 1, dayOfMonth)
   const label = date.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })
 
@@ -77,16 +115,18 @@ function renderBestDay(bestDay) {
   bestDayDateEl.textContent = `${label} · ${daysAgoLabel(date)}`
 }
 
-function daysAgoLabel(date) {
+function daysAgoLabel(date: Date): string {
   const today = new Date()
   const msPerDay = 24 * 60 * 60 * 1000
-  const daysAgo = Math.round((new Date(today.getFullYear(), today.getMonth(), today.getDate()) - date) / msPerDay)
+  const daysAgo = Math.round(
+    (new Date(today.getFullYear(), today.getMonth(), today.getDate()).getTime() - date.getTime()) / msPerDay,
+  )
   if (daysAgo <= 0) return 'today'
   if (daysAgo === 1) return 'yesterday'
   return `${daysAgo} days ago`
 }
 
-function renderWeekChart(weekHistory) {
+function renderWeekChart(weekHistory: DayUsage[]): void {
   const maxTotal = Math.max(1, ...weekHistory.map((day) => day.aiTokens + day.typedTokens))
 
   weekChartEl.innerHTML = ''
@@ -113,10 +153,10 @@ function renderWeekChart(weekHistory) {
     stack.appendChild(aiBar)
     stack.appendChild(typedBar)
 
-    const [year, month, dayOfMonth] = day.date.split('-').map(Number)
+    const [year, month, dayOfMonth] = day.date.split('-').map(Number) as [number, number, number]
     const label = document.createElement('div')
     label.className = 'week-bar-label'
-    label.textContent = weekdayLabels[new Date(year, month - 1, dayOfMonth).getDay()]
+    label.textContent = weekdayLabels[new Date(year, month - 1, dayOfMonth).getDay()]!
 
     column.appendChild(stack)
     column.appendChild(label)
