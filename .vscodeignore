@@ -1,0 +1,17 @@
+src/**
+tests/**
+.gitignore
+esbuild.js
+tsconfig.json
+pnpm-lock.yaml
+*.vsix
+!src/ui/webview/**
+!src/ui/pantry/**
+!src/ui/stats/**
+!src/ui/shared.css
+!src/ui/shared.js
+!tileset.png
+!tileset-atlas.json
+old
+.oxfmtrc.json
+.oxlintrc.json

@@ -1,0 +1,98 @@
+{
+  "name": "codecompanion",
+  "displayName": "Code Companion",
+  "description": "Grow a garden as you and Claude Code write code together.",
+  "version": "0.12.4",
+  "type": "module",
+  "publisher": "codecompanion",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "main": "./dist/extension.js",
+  "icon": "./icon.png",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codecompanion.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "codecompanion.refresh",
+          "when": "view == codecompanion.companion || view == codecompanion.stats || view == codecompanion.pantry",
+          "group": "navigation"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "codecompanion",
+          "title": "codecompanion",
+          "icon": "media/activitybar-icon.svg"
+        }
+      ]
+    },
+    "views": {
+      "codecompanion": [
+        {
+          "id": "codecompanion.companion",
+          "name": "Companion",
+          "type": "webview",
+          "icon": "media/activitybar-icon.svg"
+        },
+        {
+          "id": "codecompanion.stats",
+          "name": "Stats",
+          "type": "webview",
+          "icon": "media/activitybar-icon.svg"
+        },
+        {
+          "id": "codecompanion.pantry",
+          "name": "Pantry",
+          "type": "webview",
+          "icon": "media/activitybar-icon.svg"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "codecompanion",
+      "properties": {
+        "codecompanion.refreshIntervalSeconds": {
+          "type": "number",
+          "default": 90,
+          "minimum": 60,
+          "maximum": 900,
+          "description": "How often to rescan Claude Code usage logs, in seconds."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "vitest run",
+    "precompile": "tsc",
+    "compile": "node esbuild.js",
+    "prepackage": "pnpm run compile",
+    "package": "vsce package --no-dependencies --allow-missing-repository"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.9.2",
+    "esbuild": "^0.28.2",
+    "oxfmt": "^0.64.0",
+    "oxlint": "^1.79.0",
+    "oxlint-tsgolint": "^7.0.2001",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}

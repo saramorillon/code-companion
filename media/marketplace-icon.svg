@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3fae5c" />
+      <stop offset="100%" stop-color="#1f6b3a" />
+    </linearGradient>
+    <linearGradient id="soil" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#8a5a34" />
+      <stop offset="100%" stop-color="#5e3c22" />
+    </linearGradient>
+  </defs>
+
+  <circle cx="64" cy="64" r="60" fill="url(#bg)" />
+
+  <path d="M20 96 C20 92 24 90 30 90 L98 90 C104 90 108 92 108 96 L108 100 C108 104 104 106 98 106 L30 106 C24 106 20 104 20 100 Z" fill="url(#soil)" />
+
+  <path d="M64 90 V56" stroke="#e9f7ec" stroke-width="6" stroke-linecap="round" fill="none" />
+  <path d="M64 66 C64 50 52 44 40 44 C40 58 50 68 64 68 Z" fill="#eaf9d8" />
+  <path d="M64 56 C64 42 74 36 84 36 C84 48 76 58 64 58 Z" fill="#c9edb0" />
+</svg>

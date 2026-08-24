@@ -1,0 +1,15 @@
+{
+  "include": ["src", "tests"],
+  "compilerOptions": {
+    "rootDir": ".",
+    "types": ["node"],
+    "module": "Node16",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "noEmit": true,
+    "sourceMap": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true
+  }
+}
