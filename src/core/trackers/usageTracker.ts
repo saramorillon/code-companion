@@ -1,4 +1,4 @@
-import { claudeProjectsDir, fileCreatedAt, findJsonlFiles, fileSize, readNewTokensSince } from './claudeUsageReader.js'
+import { claudeProjectsDir, fileCreatedAt, findJsonlFiles, fileSize, readNewTokensSince } from '../claudeUsageReader.js'
 
 export type FileOffsets = Record<string, number>
 

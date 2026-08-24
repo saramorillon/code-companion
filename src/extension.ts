@@ -1,9 +1,9 @@
 import * as vscode from 'vscode'
 import { CompanionService } from './core/companionService.js'
-import { CompanionViewProvider } from './core/companionView.js'
-import { PantryViewProvider } from './core/pantryView.js'
-import { StatsViewProvider } from './core/statsView.js'
-import { TypingTracker } from './core/typingTracker.js'
+import { CompanionViewProvider } from './core/providers/CompanionViewProvider.js'
+import { PantryViewProvider } from './core/providers/PantryViewProvider.js'
+import { StatsViewProvider } from './core/providers/StatsViewProvider.js'
+import { TypingTracker } from './core/trackers/typingTracker.js'
 
 let refreshTimer: ReturnType<typeof setInterval> | null = null
 

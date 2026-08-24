@@ -1,9 +1,6 @@
 import { render } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
 import { formatTokensCompact, GardenColor, GardenKind, KindRarity } from '../shared.js'
-
-declare function acquireVsCodeApi(): { postMessage(message: unknown): void }
-const vscode = acquireVsCodeApi()
+import { WithMessage } from '../WithMessage.js'
 
 interface GardenCounts {
   tree: Record<GardenColor, number>
@@ -33,11 +30,6 @@ interface CompanionStats {
   bestDay: BestDay | null
 }
 
-interface StatsMessage {
-  type: 'stats'
-  stats: CompanionStats
-}
-
 const weekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
 
 const COUNT_ROWS: { kind: GardenKind; color: GardenColor }[] = [
@@ -65,21 +57,7 @@ function parseLocalDate(date: string): Date {
   return new Date(year, month - 1, dayOfMonth)
 }
 
-function App() {
-  const [stats, setStats] = useState<CompanionStats | null>(null)
-
-  useEffect(() => {
-    const onMessage = (event: MessageEvent<StatsMessage>) => {
-      if (event.data.type !== 'stats') return
-      setStats(event.data.stats)
-    }
-    window.addEventListener('message', onMessage)
-    vscode.postMessage({ type: 'ready' })
-    return () => window.removeEventListener('message', onMessage)
-  }, [])
-
-  if (!stats) return null
-
+function App(stats: CompanionStats) {
   const total = stats.aiTokensSinceInstall + stats.typedTokensSinceInstall
   const aiPercent = total > 0 ? (stats.aiTokensSinceInstall / total) * 100 : 50
 
@@ -186,4 +164,4 @@ function BestDayCard({ bestDay }: { bestDay: BestDay | null }) {
   )
 }
 
-render(<App />, document.body)
+render(<WithMessage view={App} />, document.body)

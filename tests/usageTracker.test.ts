@@ -2,7 +2,7 @@ import * as fs from 'fs/promises'
 import * as os from 'os'
 import * as path from 'path'
 import { assert, test, beforeEach, afterEach } from 'vitest'
-import { scanForNewTokens } from '../src/core/usageTracker.js'
+import { scanForNewTokens } from '../src/core/trackers/usageTracker.js'
 
 function assistantLine(tokens: number): string {
   return JSON.stringify({

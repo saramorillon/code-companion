@@ -1,44 +1,13 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { CompanionViewState } from './companionService.js'
-import { AtlasRect, loadGardenAtlas, findSpecies } from './gardenAtlas.js'
+import { CompanionViewState } from '../companionService.js'
+import { AtlasRect, loadGardenAtlas, findSpecies } from '../gardenAtlas.js'
+import { AbstractViewProvider } from './AbstractViewProvider.js'
 
-export class CompanionViewProvider implements vscode.WebviewViewProvider {
+export class CompanionViewProvider extends AbstractViewProvider<CompanionViewState> {
   static readonly viewId = 'codecompanion.companion'
 
-  private view: vscode.WebviewView | null = null
-  private latestState: CompanionViewState | null = null
-  private isReady = false
-
-  constructor(private readonly extensionUri: vscode.Uri) {}
-
-  resolveWebviewView(webviewView: vscode.WebviewView): void {
-    this.view = webviewView
-    this.isReady = false
-    webviewView.webview.options = {
-      enableScripts: true,
-      localResourceRoots: [this.extensionUri],
-    }
-    webviewView.webview.html = this.renderHtml(webviewView.webview)
-
-    // Le script de la webview se charge en async : un postMessage envoyé avant qu'il ait attaché
-    // son listener 'message' est perdu. La webview signale donc qu'elle est prête à le recevoir.
-    webviewView.webview.onDidReceiveMessage((message: { type: string }) => {
-      if (message.type !== 'ready') return
-      this.isReady = true
-      if (this.latestState) {
-        this.postState(this.latestState)
-      }
-    })
-  }
-
-  update(state: CompanionViewState): void {
-    this.latestState = state
-    if (!this.view || !this.isReady) return
-    this.postState(state)
-  }
-
-  private postState(state: CompanionViewState): void {
+  protected override buildState(state: CompanionViewState) {
     if (!this.view) return
 
     const atlas = loadGardenAtlas(this.extensionUri.fsPath)
@@ -52,10 +21,10 @@ export class CompanionViewProvider implements vscode.WebviewViewProvider {
       rect = species?.stages[state.color][state.stageIndex] ?? null
     }
 
-    this.view.webview.postMessage({ type: 'state', state, tilesetUri, rect })
+    return { state, tilesetUri, rect }
   }
 
-  private renderHtml(webview: vscode.Webview): string {
+  protected renderHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'webview', 'main.js')),
     )

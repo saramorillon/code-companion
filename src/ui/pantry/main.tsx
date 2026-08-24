@@ -1,9 +1,6 @@
 import { render } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
 import { GardenColor, GardenKind, KindRarity } from '../shared.js'
-
-declare function acquireVsCodeApi(): { postMessage(message: unknown): void }
-const vscode = acquireVsCodeApi()
+import { WithMessage } from '../WithMessage.js'
 
 interface AtlasRect {
   x: number
@@ -22,29 +19,13 @@ interface BasketViewModel {
 }
 
 interface BasketsMessage {
-  type: 'baskets'
   baskets: BasketViewModel[]
   tilesetUri: string
 }
 
 const SCALE = 2
 
-function App() {
-  const [data, setData] = useState<{ baskets: BasketViewModel[]; tilesetUri: string } | null>(null)
-
-  useEffect(() => {
-    const onMessage = (event: MessageEvent<BasketsMessage>) => {
-      if (event.data.type !== 'baskets') return
-      setData({ baskets: event.data.baskets, tilesetUri: event.data.tilesetUri })
-    }
-    window.addEventListener('message', onMessage)
-    vscode.postMessage({ type: 'ready' })
-    return () => window.removeEventListener('message', onMessage)
-  }, [])
-
-  const baskets = data?.baskets ?? []
-  const tilesetUri = data?.tilesetUri ?? ''
-
+function App({ baskets, tilesetUri }: BasketsMessage) {
   return (
     <>
       <div id="empty-state" style={{ display: baskets.length === 0 ? 'block' : 'none' }}>
@@ -96,4 +77,4 @@ function Basket({ basket, tilesetUri }: { basket: BasketViewModel; tilesetUri: s
   )
 }
 
-render(<App />, document.body)
+render(<WithMessage view={App} />, document.body)

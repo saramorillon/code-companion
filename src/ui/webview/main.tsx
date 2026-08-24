@@ -1,9 +1,6 @@
 import { render } from 'preact'
-import { useEffect, useState } from 'preact/hooks'
 import { formatTokensCompact, GardenColor, GardenKind, KindRarity } from '../shared.js'
-
-declare function acquireVsCodeApi(): { postMessage(message: unknown): void }
-const vscode = acquireVsCodeApi()
+import { WithMessage } from '../WithMessage.js'
 
 interface AtlasRect {
   x: number
@@ -27,33 +24,15 @@ interface CompanionViewState {
 }
 
 interface StateMessage {
-  type: 'state'
   state: CompanionViewState
   tilesetUri: string
   rect: AtlasRect | null
 }
 
-// Le tileset natif est petit (32-64px) : agrandi à l'affichage pour rester lisible dans la
-// sidebar, via transform plutôt que background-size (évite d'avoir besoin des dimensions
-// totales du PNG, seul le rect de la tuile courante suffit).
 const SCALE = 3
 
-function App() {
-  const [data, setData] = useState<{ state: CompanionViewState; tilesetUri: string; rect: AtlasRect | null } | null>(
-    null,
-  )
-
-  useEffect(() => {
-    const onMessage = (event: MessageEvent<StateMessage>) => {
-      if (event.data.type !== 'state') return
-      setData({ state: event.data.state, tilesetUri: event.data.tilesetUri, rect: event.data.rect })
-    }
-    window.addEventListener('message', onMessage)
-    vscode.postMessage({ type: 'ready' })
-    return () => window.removeEventListener('message', onMessage)
-  }, [])
-
-  if (!data || data.state.speciesId === null || !data.rect) {
+function App({ state, rect, tilesetUri }: StateMessage) {
+  if (!state || state.speciesId === null || !rect) {
     return (
       <>
         <div id="sprite-container">
@@ -75,8 +54,6 @@ function App() {
       </>
     )
   }
-
-  const { state, tilesetUri, rect } = data
 
   const threshold = state.stageThreshold ?? 0
   const ratio = threshold > 0 ? Math.min(1, state.usedAtStage / threshold) : 0
@@ -123,4 +100,4 @@ function App() {
   )
 }
 
-render(<App />, document.body)
+render(<WithMessage view={App} />, document.body)

@@ -12,7 +12,7 @@ import {
   GardenKind,
   GardenColor,
 } from './companionModel.js'
-import { FileOffsets } from './usageTracker.js'
+import { FileOffsets } from './trackers/usageTracker.js'
 
 export interface PersistedData {
   companion: CompanionState

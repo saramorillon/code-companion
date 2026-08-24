@@ -19,7 +19,7 @@ import {
 } from './companionStore.js'
 import { GardenAtlas, loadGardenAtlas, findSpecies } from './gardenAtlas.js'
 import { loadPersistedData, savePersistedData } from './persistence.js'
-import { scanForNewTokens, FileOffsets } from './usageTracker.js'
+import { scanForNewTokens, FileOffsets } from './trackers/usageTracker.js'
 
 export interface CompanionViewState {
   speciesId: string | null
