@@ -1,5 +1,5 @@
-type GardenKind = 'tree' | 'crop'
-type GardenColor = 'normal' | 'silver' | 'gold'
+export type GardenKind = 'tree' | 'crop'
+export type GardenColor = 'normal' | 'silver' | 'gold'
 
 export function formatTokensCompact(value: number): string {
   const abs = Math.abs(value)
@@ -20,24 +20,13 @@ const KIND_LABELS: Record<GardenKind, string> = { tree: 'Tree', crop: 'Crop' }
 // Rend "kind" en emoji + label texte, plus une étoile grise/dorée uniquement pour silver/gold
 // (normal n'a pas d'étoile : la couleur normal était visuellement trop proche de silver en badge
 // plein, l'étoile seule suffit à signaler la rareté sans avoir besoin d'une 3e couleur de badge).
-export function renderKindAndRarity(container: HTMLElement, kind: GardenKind | null, color: GardenColor | null): void {
-  container.innerHTML = ''
-  if (!kind) return
-
-  const icon = document.createElement('span')
-  icon.className = 'kind-icon'
-  icon.textContent = KIND_ICONS[kind] ?? ''
-  container.appendChild(icon)
-
-  const label = document.createElement('span')
-  label.className = 'kind-label'
-  label.textContent = KIND_LABELS[kind] ?? ''
-  container.appendChild(label)
-
-  if (color === 'silver' || color === 'gold') {
-    const star = document.createElement('span')
-    star.className = `rarity-star ${color}`
-    container.appendChild(star)
-  }
+export function KindRarity({ kind, color }: { kind: GardenKind | null; color: GardenColor | null }) {
+  if (!kind) return null
+  return (
+    <>
+      <span className="kind-icon">{KIND_ICONS[kind] ?? ''}</span>
+      <span className="kind-label">{KIND_LABELS[kind] ?? ''}</span>
+      {(color === 'silver' || color === 'gold') && <span className={`rarity-star ${color}`} />}
+    </>
+  )
 }
-

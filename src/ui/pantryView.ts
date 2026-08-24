@@ -96,8 +96,6 @@ export class PantryViewProvider implements vscode.WebviewViewProvider {
   <link rel="stylesheet" href="${styleUri.toString()}" />
 </head>
 <body>
-  <div id="empty-state">No harvests yet.</div>
-  <div id="basket-list"></div>
   <script src="${scriptUri.toString()}"></script>
 </body>
 </html>`

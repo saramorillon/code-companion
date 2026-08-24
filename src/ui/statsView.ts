@@ -50,51 +50,6 @@ export class StatsViewProvider implements vscode.WebviewViewProvider {
   <link rel="stylesheet" href="${styleUri.toString()}" />
 </head>
 <body>
-  <div class="stat-row">
-    <span class="stat-label">Harvested</span>
-    <span class="stat-value" id="harvested-count"></span>
-  </div>
-  <div class="rarity-section" id="counts-list"></div>
-  <div class="stat-section">
-    <div class="stat-row">
-      <span class="stat-label">Tokens today</span>
-      <span class="stat-value" id="today-tokens"></span>
-    </div>
-    <div class="stat-row">
-      <span class="stat-label">Characters today</span>
-      <span class="stat-value" id="today-chars"></span>
-    </div>
-  </div>
-  <div class="stat-section">
-    <div id="ratio-donut"></div>
-    <div class="legend-row">
-      <span class="legend-dot legend-ai"></span>
-      <span class="legend-label">AI</span>
-      <span class="stat-value" id="ratio-ai-pct"></span>
-    </div>
-    <div class="legend-row">
-      <span class="legend-dot legend-typed"></span>
-      <span class="legend-label">Typed</span>
-      <span class="stat-value" id="ratio-typed-pct"></span>
-    </div>
-  </div>
-  <div class="stat-section">
-    <div id="week-chart"></div>
-    <div class="legend-row">
-      <span class="legend-dot legend-ai"></span>
-      <span class="legend-label">AI</span>
-      <span class="legend-dot legend-typed"></span>
-      <span class="legend-label">Typed</span>
-    </div>
-    <div id="best-day-card">
-      <div id="best-day-trophy">🏆</div>
-      <div id="best-day-info">
-        <div id="best-day-title">Best day</div>
-        <div id="best-day-value"></div>
-        <div id="best-day-date"></div>
-      </div>
-    </div>
-  </div>
   <script src="${scriptUri.toString()}"></script>
 </body>
 </html>`

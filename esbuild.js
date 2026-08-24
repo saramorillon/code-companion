@@ -14,12 +14,14 @@ const extensionOptions = {
 }
 
 const webviewOptions = {
-  entryPoints: ['src/ui/webview/main.ts', 'src/ui/pantry/main.ts', 'src/ui/stats/main.ts'],
+  entryPoints: ['src/ui/webview/main.tsx', 'src/ui/pantry/main.tsx', 'src/ui/stats/main.tsx'],
   bundle: true,
   outbase: 'src/ui',
   outdir: 'dist/ui',
   format: 'iife',
   platform: 'browser',
+  jsx: 'automatic',
+  jsxImportSource: 'preact',
   sourcemap: true,
   minify: !watch,
 }

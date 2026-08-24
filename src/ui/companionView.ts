@@ -67,20 +67,6 @@ export class CompanionViewProvider implements vscode.WebviewViewProvider {
   <link rel="stylesheet" href="${styleUri.toString()}" />
 </head>
 <body>
-  <div id="sprite-container">
-    <div id="sprite-outer">
-      <div id="sprite"></div>
-    </div>
-  </div>
-  <div id="info">
-    <div id="name-row">
-      <span id="name"></span>
-      <span id="kind-rarity"></span>
-    </div>
-    <div id="stage-text"></div>
-    <div id="progress-bar"><div id="progress-fill"></div></div>
-    <div id="remaining-text"></div>
-  </div>
   <script src="${scriptUri.toString()}"></script>
 </body>
 </html>`
