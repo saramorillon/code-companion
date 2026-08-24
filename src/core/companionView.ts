@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { CompanionViewState } from '../core/companionService.js'
-import { AtlasRect, loadGardenAtlas, findSpecies } from '../core/gardenAtlas.js'
+import { CompanionViewState } from './companionService.js'
+import { AtlasRect, loadGardenAtlas, findSpecies } from './gardenAtlas.js'
 
 export class CompanionViewProvider implements vscode.WebviewViewProvider {
   static readonly viewId = 'codecompanion.companion'

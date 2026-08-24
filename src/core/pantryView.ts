@@ -1,7 +1,7 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { HarvestEntry, GardenKind, GardenColor } from '../core/companionModel.js'
-import { AtlasRect, loadGardenAtlas, findSpecies } from '../core/gardenAtlas.js'
+import { HarvestEntry, GardenKind, GardenColor } from './companionModel.js'
+import { AtlasRect, loadGardenAtlas, findSpecies } from './gardenAtlas.js'
 
 interface BasketViewModel {
   speciesId: string

@@ -8,7 +8,6 @@ import {
   computeStats,
   plantingStageThreshold,
 } from './companionModel.js'
-import { GardenAtlas, loadGardenAtlas, findSpecies } from './gardenAtlas.js'
 import {
   newPlanting,
   applyUsageToPlanting,
@@ -18,6 +17,7 @@ import {
   addToWeekHistory,
   updateBestDay,
 } from './companionStore.js'
+import { GardenAtlas, loadGardenAtlas, findSpecies } from './gardenAtlas.js'
 import { loadPersistedData, savePersistedData } from './persistence.js'
 import { scanForNewTokens, FileOffsets } from './usageTracker.js'
 

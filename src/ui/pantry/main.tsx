@@ -64,7 +64,11 @@ function Basket({ basket, tilesetUri }: { basket: BasketViewModel; tilesetUri: s
     <div className="basket-entry">
       <div
         className="basket-sprite-outer"
-        style={basket.rect ? { width: `${basket.rect.width * SCALE}px`, height: `${basket.rect.height * SCALE}px` } : undefined}
+        style={
+          basket.rect
+            ? { width: `${basket.rect.width * SCALE}px`, height: `${basket.rect.height * SCALE}px` }
+            : undefined
+        }
       >
         {basket.rect && (
           <div

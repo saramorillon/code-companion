@@ -106,9 +106,16 @@ export function addToUsageSplit(state: CompanionState, aiTokens: number, typedTo
 
 // Accumule dans l'entrée du jour de weekHistory (créée si absente), puis élague les entrées
 // plus vieilles que la fenêtre glissante pour garder le tableau persisté borné dans le temps.
-export function addToWeekHistory(state: CompanionState, now: Date, aiTokens: number, typedTokens: number): CompanionState {
+export function addToWeekHistory(
+  state: CompanionState,
+  now: Date,
+  aiTokens: number,
+  typedTokens: number,
+): CompanionState {
   const date = todayLocalDate(now)
-  const oldestKeptDate = todayLocalDate(new Date(now.getFullYear(), now.getMonth(), now.getDate() - (WEEK_HISTORY_DAYS - 1)))
+  const oldestKeptDate = todayLocalDate(
+    new Date(now.getFullYear(), now.getMonth(), now.getDate() - (WEEK_HISTORY_DAYS - 1)),
+  )
 
   const pruned = state.weekHistory.filter((day) => day.date >= oldestKeptDate && day.date !== date)
   const existing = state.weekHistory.find((day) => day.date === date)

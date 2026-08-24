@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { CompanionStats } from '../core/companionModel.js'
+import { CompanionStats } from './companionModel.js'
 
 export class StatsViewProvider implements vscode.WebviewViewProvider {
   static readonly viewId = 'codecompanion.stats'

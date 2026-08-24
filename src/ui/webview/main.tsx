@@ -81,7 +81,8 @@ function App() {
   const threshold = state.stageThreshold ?? 0
   const ratio = threshold > 0 ? Math.min(1, state.usedAtStage / threshold) : 0
   const remaining = Math.max(0, threshold - state.usedAtStage)
-  const isFinalStage = state.stageIndex !== null && state.totalStages !== null && state.stageIndex >= state.totalStages - 1
+  const isFinalStage =
+    state.stageIndex !== null && state.totalStages !== null && state.stageIndex >= state.totalStages - 1
 
   return (
     <>
@@ -107,7 +108,9 @@ function App() {
           </span>
         </div>
         <div id="stage-text">
-          {state.stageIndex !== null && state.totalStages !== null ? `Stage ${state.stageIndex + 1} / ${state.totalStages}` : ''}
+          {state.stageIndex !== null && state.totalStages !== null
+            ? `Stage ${state.stageIndex + 1} / ${state.totalStages}`
+            : ''}
         </div>
         <div id="progress-bar">
           <div id="progress-fill" style={{ width: `${Math.round(ratio * 100)}%` }} />

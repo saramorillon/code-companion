@@ -1,5 +1,5 @@
 import * as vscode from 'vscode'
-import { TypedCharsAccumulator } from '../core/typedCharsCounter.js'
+import { TypedCharsAccumulator } from './typedCharsCounter.js'
 
 // Approximation, pas une mesure exacte : VSCode n'expose aucun moyen de distinguer une vraie
 // frappe clavier d'un collage, d'une auto-complétion ou d'une édition faite par une autre
