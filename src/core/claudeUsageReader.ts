@@ -4,7 +4,8 @@ import * as os from 'os'
 import * as path from 'path'
 
 export function claudeProjectsDir(): string {
-  return path.join(os.homedir(), '.claude', 'projects')
+  const configDir = process.env.CLAUDE_CONFIG_DIR || path.join(os.homedir(), '.claude')
+  return path.join(configDir, 'projects')
 }
 
 export async function findJsonlFiles(rootDir: string): Promise<string[]> {
