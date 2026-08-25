@@ -1,10 +1,5 @@
 import { assert, test } from 'vitest'
-import {
-  freshCompanionState,
-  PlantingState,
-  plantingStageThreshold,
-  todayLocalDate,
-} from '../src/core/companionModel.js'
+import { freshCompanionState, plantingStageThreshold, todayLocalDate } from '../src/core/companionModel.js'
 import {
   newPlanting,
   applyUsageToPlanting,
@@ -14,6 +9,7 @@ import {
   updateBestDay,
 } from '../src/core/companionStore.js'
 import { GardenAtlas } from '../src/core/gardenAtlas.js'
+import { PlantingState } from '../src/types.js'
 
 function testAtlas(): GardenAtlas {
   const rect = { x: 0, y: 0, width: 32, height: 32 }

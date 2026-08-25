@@ -2,8 +2,9 @@ import * as fs from 'fs/promises'
 import * as os from 'os'
 import * as path from 'path'
 import { assert, test, beforeEach, afterEach } from 'vitest'
-import { freshCompanionState, PlantingState, HarvestEntry } from '../src/core/companionModel.js'
+import { freshCompanionState } from '../src/core/companionModel.js'
 import { loadPersistedData, savePersistedData } from '../src/core/persistence.js'
+import { PlantingState, HarvestEntry } from '../src/types.js'
 
 let storageDir: string
 

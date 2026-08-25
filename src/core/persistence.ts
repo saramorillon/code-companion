@@ -1,17 +1,7 @@
 import * as fs from 'fs/promises'
 import * as path from 'path'
-import {
-  CompanionState,
-  freshCompanionState,
-  freshDailyStats,
-  todayLocalDate,
-  PlantingState,
-  HarvestEntry,
-  DailyStats,
-  DayUsage,
-  GardenKind,
-  GardenColor,
-} from './companionModel.js'
+import { CompanionState, GardenKind, GardenColor, PlantingState, HarvestEntry, DailyStats, DayUsage } from '../types.js'
+import { freshCompanionState, freshDailyStats, todayLocalDate } from './companionModel.js'
 import { FileOffsets } from './trackers/usageTracker.js'
 
 export interface PersistedData {

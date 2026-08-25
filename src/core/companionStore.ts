@@ -1,14 +1,6 @@
-import {
-  CompanionState,
-  PlantingState,
-  HarvestEntry,
-  DayUsage,
-  BestDay,
-  WEEK_HISTORY_DAYS,
-  plantingStageThreshold,
-  freshDailyStats,
-  todayLocalDate,
-} from './companionModel.js'
+import { WEEK_HISTORY_DAYS } from '../constants.js'
+import { PlantingState, CompanionState, HarvestEntry, DayUsage, BestDay } from '../types.js'
+import { plantingStageThreshold, freshDailyStats, todayLocalDate } from './companionModel.js'
 import { GardenAtlas, drawPlanting, findSpecies } from './gardenAtlas.js'
 
 // Tire une nouvelle plantation (espèce + couleur), synchrone et purement locale via l'atlas.

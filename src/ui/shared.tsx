@@ -1,5 +1,5 @@
-export type GardenKind = 'tree' | 'crop'
-export type GardenColor = 'normal' | 'silver' | 'gold'
+import { KIND_ICONS, KIND_LABELS } from '../constants.js'
+import { GardenKind, GardenColor } from '../types.js'
 
 export function formatTokensCompact(value: number): string {
   const abs = Math.abs(value)
@@ -13,9 +13,6 @@ export function formatTokensCompact(value: number): string {
 function trim(value: number, decimals: number): string {
   return value.toFixed(decimals).replace(/\.?0+$/, '')
 }
-
-const KIND_ICONS: Record<GardenKind, string> = { tree: '🌳', crop: '🌱' }
-const KIND_LABELS: Record<GardenKind, string> = { tree: 'Tree', crop: 'Crop' }
 
 // Rend "kind" en emoji + label texte, plus une étoile grise/dorée uniquement pour silver/gold
 // (normal n'a pas d'étoile : la couleur normal était visuellement trop proche de silver en badge

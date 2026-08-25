@@ -5,10 +5,8 @@ import {
   harvestTotal,
   freshCompanionState,
   todayLocalDate,
-  HarvestEntry,
-  GardenKind,
-  GardenColor,
 } from '../src/core/companionModel.js'
+import { GardenKind, GardenColor, HarvestEntry } from '../src/types.js'
 
 const KINDS: GardenKind[] = ['tree', 'crop']
 const COLORS: GardenColor[] = ['normal', 'silver', 'gold']

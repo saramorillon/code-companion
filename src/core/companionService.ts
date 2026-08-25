@@ -1,13 +1,6 @@
-import {
-  CompanionState,
-  CompanionStats,
-  HarvestEntry,
-  GardenKind,
-  GardenColor,
-  TYPED_CHAR_TOKEN_EQUIVALENT,
-  computeStats,
-  plantingStageThreshold,
-} from './companionModel.js'
+import { TYPED_CHAR_TOKEN_EQUIVALENT } from '../constants.js'
+import { GardenKind, GardenColor, CompanionState, HarvestEntry, CompanionStats } from '../types.js'
+import { computeStats, plantingStageThreshold } from './companionModel.js'
 import {
   newPlanting,
   applyUsageToPlanting,

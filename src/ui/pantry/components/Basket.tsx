@@ -1,46 +1,9 @@
-import { render } from 'preact'
-import { GardenColor, GardenKind, KindRarity } from '../shared.js'
-import { WithMessage } from '../WithMessage.js'
-
-interface AtlasRect {
-  x: number
-  y: number
-  width: number
-  height: number
-}
-
-interface BasketViewModel {
-  speciesId: string
-  speciesName: string
-  kind: GardenKind
-  color: GardenColor
-  count: number
-  rect: AtlasRect | null
-}
-
-interface BasketsMessage {
-  baskets: BasketViewModel[]
-  tilesetUri: string
-}
+import { BasketViewModel } from '../../../types.js'
+import { KindRarity } from '../../shared.js'
 
 const SCALE = 2
 
-function App({ baskets, tilesetUri }: BasketsMessage) {
-  return (
-    <>
-      <div id="empty-state" style={{ display: baskets.length === 0 ? 'block' : 'none' }}>
-        No harvests yet.
-      </div>
-      <div id="basket-list">
-        {baskets.map((basket) => (
-          <Basket key={`${basket.speciesId}|${basket.color}`} basket={basket} tilesetUri={tilesetUri} />
-        ))}
-      </div>
-    </>
-  )
-}
-
-function Basket({ basket, tilesetUri }: { basket: BasketViewModel; tilesetUri: string }) {
+export function Basket({ basket, tilesetUri }: { basket: BasketViewModel; tilesetUri: string }) {
   return (
     <div className="basket-entry">
       <div
@@ -76,5 +39,3 @@ function Basket({ basket, tilesetUri }: { basket: BasketViewModel; tilesetUri: s
     </div>
   )
 }
-
-render(<WithMessage view={App} />, document.body)

@@ -1,6 +1,6 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { CompanionStats } from '../companionModel.js'
+import { CompanionStats } from '../../types.js'
 import { AbstractViewProvider } from './AbstractViewProvider.js'
 
 export class StatsViewProvider extends AbstractViewProvider<CompanionStats> {
@@ -8,7 +8,7 @@ export class StatsViewProvider extends AbstractViewProvider<CompanionStats> {
 
   protected renderHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'stats', 'main.js')),
+      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'stats', 'App.js')),
     )
     const styleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'stats', 'styles.css')),

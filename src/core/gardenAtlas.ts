@@ -1,6 +1,6 @@
 import * as fs from 'fs'
 import * as path from 'path'
-import { GardenColor, GardenKind } from './companionModel.js'
+import { GardenKind, GardenColor } from '../types.js'
 
 export interface AtlasRect {
   x: number

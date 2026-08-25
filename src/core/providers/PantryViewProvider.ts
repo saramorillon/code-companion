@@ -1,17 +1,8 @@
 import * as path from 'path'
 import * as vscode from 'vscode'
-import { HarvestEntry, GardenKind, GardenColor } from '../companionModel.js'
-import { AtlasRect, loadGardenAtlas, findSpecies } from '../gardenAtlas.js'
+import { GardenColor, HarvestEntry, BasketViewModel } from '../../types.js'
+import { loadGardenAtlas, findSpecies } from '../gardenAtlas.js'
 import { AbstractViewProvider } from './AbstractViewProvider.js'
-
-interface BasketViewModel {
-  speciesId: string
-  speciesName: string
-  kind: GardenKind
-  color: GardenColor
-  count: number
-  rect: AtlasRect | null
-}
 
 export class PantryViewProvider extends AbstractViewProvider<HarvestEntry[]> {
   static readonly viewId = 'codecompanion.pantry'
@@ -54,7 +45,7 @@ export class PantryViewProvider extends AbstractViewProvider<HarvestEntry[]> {
   }
 
   protected renderHtml(webview: vscode.Webview): string {
-    const scriptUri = this.getUri(webview, 'dist', 'ui', 'pantry', 'main.js')
+    const scriptUri = this.getUri(webview, 'dist', 'ui', 'pantry', 'App.js')
     const styleUri = this.getUri(webview, 'src', 'ui', 'pantry', 'styles.css')
     const sharedStyleUri = this.getUri(webview, 'src', 'ui', 'shared.css')
 

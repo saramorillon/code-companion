@@ -1,25 +1,13 @@
-export type GardenKind = 'tree' | 'crop'
-export type GardenColor = 'normal' | 'silver' | 'gold'
-
-export const GARDEN_COLORS: readonly GardenColor[] = ['normal', 'silver', 'gold']
-
-// Caractère tapé manuellement dans l'éditeur -> équivalent en tokens pour la progression du
-// compagnon. Sans ce facteur, la frappe manuelle serait négligeable face au volume de tokens
-// Claude Code (des centaines de millions par jour) : 1 caractère = 1 token ne se voit jamais.
-export const TYPED_CHAR_TOKEN_EQUIVALENT = 500
-
-export const HARVEST_BASE_TOTAL = 300_000_000
-
-export const COLOR_MULTIPLIER: Record<GardenColor, number> = {
-  normal: 1,
-  silver: 2,
-  gold: 4,
-}
-
-export const KIND_MULTIPLIER: Record<GardenKind, number> = {
-  crop: 1,
-  tree: 2.5,
-}
+import { HARVEST_BASE_TOTAL, COLOR_MULTIPLIER, KIND_MULTIPLIER, WEEK_HISTORY_DAYS } from '../constants.js'
+import {
+  DailyStats,
+  CompanionState,
+  DayUsage,
+  CompanionStats,
+  GardenCounts,
+  GardenColor,
+  GardenKind,
+} from '../types.js'
 
 export function harvestTotal(kind: GardenKind, color: GardenColor): number {
   return HARVEST_BASE_TOTAL * COLOR_MULTIPLIER[color] * KIND_MULTIPLIER[kind]
@@ -41,56 +29,8 @@ export function plantingStageThreshold(
   return Math.round((total * i) / triangularNumber)
 }
 
-export interface PlantingState {
-  speciesId: string
-  kind: GardenKind
-  color: GardenColor
-  stageIndex: number
-  totalStages: number
-  usedAtStage: number
-}
-
-export interface HarvestEntry {
-  speciesId: string
-  kind: GardenKind
-  color: GardenColor
-  harvestedAt: string
-}
-
-export interface DailyStats {
-  date: string // YYYY-MM-DD, heure locale
-  tokens: number
-  chars: number
-}
-
 export function freshDailyStats(date: string): DailyStats {
   return { date, tokens: 0, chars: 0 }
-}
-
-export interface DayUsage {
-  date: string // YYYY-MM-DD, heure locale
-  aiTokens: number
-  typedTokens: number
-}
-
-export const WEEK_HISTORY_DAYS = 7
-
-export interface BestDay {
-  date: string // YYYY-MM-DD, heure locale
-  aiTokens: number
-  typedTokens: number
-}
-
-export interface CompanionState {
-  installBaselineAt: string | null
-  aiTokensSinceInstall: number
-  typedTokensSinceInstall: number
-  active: PlantingState | null
-  harvests: HarvestEntry[]
-  harvestedCount: number
-  today: DailyStats
-  weekHistory: DayUsage[]
-  bestDay: BestDay | null
 }
 
 export function freshCompanionState(): CompanionState {
@@ -114,22 +54,6 @@ export function todayLocalDate(now: Date): string {
   const month = String(now.getMonth() + 1).padStart(2, '0')
   const day = String(now.getDate()).padStart(2, '0')
   return `${year}-${month}-${day}`
-}
-
-export interface GardenCounts {
-  tree: Record<GardenColor, number>
-  crop: Record<GardenColor, number>
-}
-
-export interface CompanionStats {
-  harvestedCount: number
-  counts: GardenCounts
-  todayTokens: number
-  todayChars: number
-  aiTokensSinceInstall: number
-  typedTokensSinceInstall: number
-  weekHistory: DayUsage[]
-  bestDay: BestDay | null
 }
 
 // Fenêtre glissante des WEEK_HISTORY_DAYS derniers jours calendaires (aujourd'hui inclus),

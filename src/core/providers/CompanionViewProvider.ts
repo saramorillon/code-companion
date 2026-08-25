@@ -26,7 +26,7 @@ export class CompanionViewProvider extends AbstractViewProvider<CompanionViewSta
 
   protected renderHtml(webview: vscode.Webview): string {
     const scriptUri = webview.asWebviewUri(
-      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'webview', 'main.js')),
+      vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', 'webview', 'App.js')),
     )
     const styleUri = webview.asWebviewUri(
       vscode.Uri.file(path.join(this.extensionUri.fsPath, 'src', 'ui', 'webview', 'styles.css')),
