@@ -5,7 +5,7 @@ esbuild.js
 tsconfig.json
 pnpm-lock.yaml
 *.vsix
-!src/ui/webview/**
+!src/ui/companion/**
 !src/ui/pantry/**
 !src/ui/stats/**
 !src/ui/shared.css

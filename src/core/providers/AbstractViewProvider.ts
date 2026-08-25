@@ -48,8 +48,29 @@ export abstract class AbstractViewProvider<T> implements vscode.WebviewViewProvi
   }
 
   protected getUri(webview: vscode.Webview, ...paths: string[]) {
-    return webview.asWebviewUri(vscode.Uri.file(path.join(this.extensionUri.fsPath, 'dist', 'ui', ...paths)))
+    return webview.asWebviewUri(vscode.Uri.file(path.join(this.extensionUri.fsPath, ...paths)))
   }
 
-  protected abstract renderHtml(webview: vscode.Webview): string
+  protected abstract getScriptUri(webview: vscode.Webview): vscode.Uri
+
+  protected abstract getStyleUri(webview: vscode.Webview): vscode.Uri
+
+  protected renderHtml(webview: vscode.Webview): string {
+    const scriptUri = this.getScriptUri(webview)
+    const styleUri = this.getStyleUri(webview)
+    const sharedStyleUri = this.getUri(webview, 'src', 'ui', 'shared.css')
+
+    return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} data:; style-src ${webview.cspSource}; script-src ${webview.cspSource};" />
+  <link rel="stylesheet" href="${sharedStyleUri.toString()}" />
+  <link rel="stylesheet" href="${styleUri.toString()}" />
+</head>
+<body>
+  <script src="${scriptUri.toString()}"></script>
+</body>
+</html>`
+  }
 }

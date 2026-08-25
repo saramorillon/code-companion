@@ -14,7 +14,7 @@ const extensionOptions = {
 }
 
 const webviewOptions = {
-  entryPoints: ['src/ui/webview/App.tsx', 'src/ui/pantry/App.tsx', 'src/ui/stats/App.tsx'],
+  entryPoints: ['src/ui/companion/App.tsx', 'src/ui/pantry/App.tsx', 'src/ui/stats/App.tsx'],
   bundle: true,
   outbase: 'src/ui',
   outdir: 'dist/ui',
