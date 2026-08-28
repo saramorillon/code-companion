@@ -1,37 +1,21 @@
-import { GardenColor, GardenKind } from './types.js'
+import { Category, Rarity } from './types.js'
 
-export const GARDEN_COLORS: readonly GardenColor[] = ['normal', 'silver', 'gold']
+export const PROVIDERS = ['user', 'claude'] as const
 
-// Caractère tapé manuellement dans l'éditeur -> équivalent en tokens pour la progression du
-// compagnon. Sans ce facteur, la frappe manuelle serait négligeable face au volume de tokens
-// Claude Code (des centaines de millions par jour) : 1 caractère = 1 token ne se voit jamais.
-export const TYPED_CHAR_TOKEN_EQUIVALENT = 500
+export const RARITIES: Rarity[] = ['normal', 'silver', 'gold'] as const
 
-export const HARVEST_BASE_TOTAL = 300_000_000
-
-export const COLOR_MULTIPLIER: Record<GardenColor, number> = {
-  normal: 1,
-  silver: 2,
-  gold: 4,
-}
-
-export const KIND_MULTIPLIER: Record<GardenKind, number> = {
-  crop: 1,
-  tree: 2.5,
-}
-
-export const WEEK_HISTORY_DAYS = 7
+export const STAGES = {
+  'crop-normal': [20000000, 60000000, 120000000, 200000000, 300000000],
+  'crop-silver': [40000000, 120000000, 240000000, 400000000, 600000000],
+  'crop-gold': [60000000, 180000000, 360000000, 600000000, 900000000],
+  'tree-normal': [75000000, 225000000, 450000000, 750000000],
+  'tree-silver': [150000000, 450000000, 900000000, 1500000000],
+  'tree-gold': [225000000, 675000000, 1350000000, 2250000000],
+} as const
 
 export const SPRITE_SCALE = 3
 
-export const KIND_ICONS: Record<GardenKind, string> = { tree: '🌳', crop: '🌱' }
-export const KIND_LABELS: Record<GardenKind, string> = { tree: 'Tree', crop: 'Crop' }
-
-export const COUNT_ROWS: { kind: GardenKind; color: GardenColor }[] = [
-  { kind: 'tree', color: 'normal' },
-  { kind: 'tree', color: 'silver' },
-  { kind: 'tree', color: 'gold' },
-  { kind: 'crop', color: 'normal' },
-  { kind: 'crop', color: 'silver' },
-  { kind: 'crop', color: 'gold' },
-]
+export const CATEGORY_ICONS: Record<Category, string> = {
+  tree: '🌳',
+  crop: '🌱',
+}

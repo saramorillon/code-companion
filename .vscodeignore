@@ -5,11 +5,10 @@ esbuild.js
 tsconfig.json
 pnpm-lock.yaml
 *.vsix
-!src/ui/companion/**
-!src/ui/pantry/**
-!src/ui/stats/**
-!src/ui/shared.css
-!src/ui/shared.js
+!src/views/companion/**
+!src/views/pantry/**
+!src/views/stats/**
+!src/views/shared.css
 !tileset.png
 !tileset-atlas.json
 old

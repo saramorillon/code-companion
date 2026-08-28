@@ -1,0 +1,45 @@
+:root {
+  --cozy-green: #4c7326;
+  --cozy-amber: #a66d03;
+  --cozy-rose: #bf638e;
+  --cozy-brown: #3b2825;
+  --cozy-ink: #0d0d0d;
+  --cozy-plum: #5b4f6d;
+}
+
+body {
+  padding: 8px;
+  font-family: var(--vscode-font-family);
+  color: var(--vscode-foreground);
+}
+
+.kind-icon {
+  font-size: 12px;
+  line-height: 1;
+}
+
+.kind-label {
+  font-size: 10px;
+  opacity: 0.75;
+}
+
+.rarity-star {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  vertical-align: middle;
+}
+
+.rarity-star.normal {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath stroke='%23ffffff' d='M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z'/%3E%3C/svg%3E");
+}
+
+.rarity-star.silver {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23b9b9c2' d='M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z'/%3E%3C/svg%3E");
+}
+
+.rarity-star.gold {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23a66d03' d='M12 1l3.09 6.26L22 8.27l-5 4.87 1.18 6.88L12 16.9l-6.18 3.12L7 13.14 2 8.27l6.91-1.01z'/%3E%3C/svg%3E");
+}

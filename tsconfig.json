@@ -2,16 +2,16 @@
   "include": ["src", "tests"],
   "compilerOptions": {
     "rootDir": ".",
-    "types": ["node"],
-    "module": "Node16",
-    "target": "ES2022",
-    "lib": ["ES2022", "DOM"],
+    "types": ["vitest/globals", "node"],
+    "module": "nodenext",
+    "target": "esnext",
     "jsx": "react-jsx",
     "jsxImportSource": "preact",
     "noEmit": true,
     "sourceMap": true,
     "strict": true,
     "noUncheckedIndexedAccess": true,
-    "noImplicitOverride": true
+    "noImplicitOverride": true,
+    "resolveJsonModule": true
   }
 }

@@ -1,0 +1,71 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+}
+
+#sprite-container {
+  min-width: 96px;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#sprite-outer {
+  overflow: hidden;
+}
+
+#sprite {
+  image-rendering: pixelated;
+  background-repeat: no-repeat;
+  transform-origin: top left;
+}
+
+#info {
+  margin-top: 8px;
+  width: 100%;
+  text-align: center;
+}
+
+#name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+#name {
+  font-weight: 600;
+  font-size: 12px;
+}
+
+#kind-rarity {
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
+}
+
+#remaining-text {
+  margin-top: 4px;
+  font-size: 10px;
+  opacity: 0.7;
+}
+
+#progress-bar {
+  margin-top: 6px;
+  width: 70%;
+  margin-inline: auto;
+  height: 6px;
+  background: rgba(76, 115, 38, 0.18);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+#progress-fill {
+  height: 100%;
+  background: var(--cozy-green, #4c7326);
+  width: var(--progress, 0%);
+  transition: width 0.3s ease;
+}

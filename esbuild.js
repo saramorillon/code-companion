@@ -14,10 +14,10 @@ const extensionOptions = {
 }
 
 const webviewOptions = {
-  entryPoints: ['src/ui/companion/App.tsx', 'src/ui/pantry/App.tsx', 'src/ui/stats/App.tsx'],
+  entryPoints: ['src/views/companion/App.tsx', 'src/views/pantry/App.tsx', 'src/views/stats/App.tsx'],
   bundle: true,
-  outbase: 'src/ui',
-  outdir: 'dist/ui',
+  outbase: 'src/views',
+  outdir: 'dist/views',
   format: 'iife',
   platform: 'browser',
   jsx: 'automatic',

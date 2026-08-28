@@ -1,39 +1,68 @@
-import * as vscode from 'vscode'
-import { CompanionService } from './core/companionService.js'
-import { CompanionViewProvider } from './core/providers/CompanionViewProvider.js'
-import { PantryViewProvider } from './core/providers/PantryViewProvider.js'
-import { StatsViewProvider } from './core/providers/StatsViewProvider.js'
-import { TypingTracker } from './core/trackers/typingTracker.js'
+import { ExtensionContext, workspace, commands, window } from 'vscode'
+import { DataManager } from './manager/DataManager.js'
+import { AbstractViewProvider } from './providers/AbstractViewProvider.js'
+import { CompanionViewProvider } from './providers/CompanionViewProvider.js'
+import { PantryViewProvider } from './providers/PantryViewProvider.js'
+import { StatsViewProvider } from './providers/StatsViewProvider.js'
+import { AbstractTracker } from './trackers/AbstractTracker.js'
+import { CharTracker } from './trackers/CharTracker.js'
+import { ClaudeTracker } from './trackers/ClaudeTracker.js'
+import { Provider } from './types.js'
 
 let refreshTimer: ReturnType<typeof setInterval> | null = null
 
-export async function activate(context: vscode.ExtensionContext): Promise<void> {
+let dataManager: DataManager | null = null
+
+const trackers: Record<Provider, AbstractTracker> = {
+  user: new CharTracker(),
+  claude: new ClaudeTracker(),
+}
+
+const viewProviders: Record<string, AbstractViewProvider<unknown>> = {
+  companion: new CompanionViewProvider(),
+  pantry: new PantryViewProvider(),
+  stats: new StatsViewProvider(),
+}
+
+export async function activate(context: ExtensionContext) {
   const storageDir = context.globalStorageUri.fsPath
 
-  const service = await CompanionService.create(storageDir, context.extensionUri.fsPath)
-  const companionViewProvider = new CompanionViewProvider(context.extensionUri)
-  const pantryViewProvider = new PantryViewProvider(context.extensionUri)
-  const statsViewProvider = new StatsViewProvider(context.extensionUri)
-  const typingTracker = new TypingTracker()
+  dataManager = new DataManager(storageDir)
+  await dataManager.loadData()
 
-  const refresh = async () => {
-    const state = await service.refresh(typingTracker.takePendingChars())
-    companionViewProvider.update(state)
-    pantryViewProvider.update(service.harvestEntries())
-    statsViewProvider.update(service.stats())
+  for (const tracker of Object.values(trackers)) {
+    await tracker.start(dataManager.state)
+  }
+
+  for (const viewProvider of Object.values(viewProviders)) {
+    viewProvider.start(dataManager.state, context.extensionUri)
+  }
+
+  async function refresh() {
+    if (dataManager) {
+      for (const tracker of Object.values(trackers)) {
+        const tokens = await tracker.update(dataManager.state)
+        dataManager.update(tracker.key, tokens)
+      }
+
+      for (const viewProvider of Object.values(viewProviders)) {
+        viewProvider.update(dataManager.state)
+      }
+
+      await dataManager.saveData()
+    }
   }
 
   context.subscriptions.push(
-    vscode.window.registerWebviewViewProvider(CompanionViewProvider.viewId, companionViewProvider),
-    vscode.window.registerWebviewViewProvider(PantryViewProvider.viewId, pantryViewProvider),
-    vscode.window.registerWebviewViewProvider(StatsViewProvider.viewId, statsViewProvider),
+    ...Object.values(viewProviders).map((viewProvider) =>
+      window.registerWebviewViewProvider(viewProvider.viewId, viewProvider),
+    ),
   )
 
-  await refresh()
   scheduleRefresh(refresh)
 
   context.subscriptions.push(
-    vscode.workspace.onDidChangeConfiguration((event) => {
+    workspace.onDidChangeConfiguration((event) => {
       if (event.affectsConfiguration('codecompanion.refreshIntervalSeconds')) {
         scheduleRefresh(refresh)
       }
@@ -41,22 +70,35 @@ export async function activate(context: vscode.ExtensionContext): Promise<void> 
   )
 
   context.subscriptions.push(
-    vscode.window.onDidChangeWindowState((windowState) => {
+    window.onDidChangeWindowState((windowState) => {
       if (windowState.focused) {
         void refresh()
       }
     }),
   )
 
-  context.subscriptions.push(vscode.commands.registerCommand('codecompanion.refresh', refresh))
+  context.subscriptions.push(
+    commands.registerCommand('codecompanion.refresh', () => {
+      void refresh()
+    }),
+  )
 }
 
 function scheduleRefresh(refresh: () => Promise<void>): void {
-  if (refreshTimer) clearInterval(refreshTimer)
-  const seconds = vscode.workspace.getConfiguration('codecompanion').get<number>('refreshIntervalSeconds', 90)
+  if (refreshTimer) {
+    clearInterval(refreshTimer)
+  }
+  const seconds = workspace.getConfiguration('codecompanion').get<number>('refreshIntervalSeconds', 90)
   refreshTimer = setInterval(refresh, seconds * 1000)
 }
 
-export function deactivate(): void {
-  if (refreshTimer) clearInterval(refreshTimer)
+export async function deactivate() {
+  if (refreshTimer) {
+    clearInterval(refreshTimer)
+  }
+
+  await dataManager?.saveData()
+  for (const tracker of Object.values(trackers)) {
+    await tracker.stop()
+  }
 }
