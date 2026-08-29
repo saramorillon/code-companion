@@ -4,7 +4,7 @@
   "description": "Grow a garden as you and Claude Code write code together.",
   "version": "0.12.4",
   "type": "module",
-  "publisher": "codecompanion",
+  "publisher": "saramorillon",
   "engines": {
     "vscode": "^1.85.0"
   },
