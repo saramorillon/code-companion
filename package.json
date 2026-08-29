@@ -1,7 +1,7 @@
 {
   "name": "codecompanion",
   "displayName": "Code Companion",
-  "description": "Grow a garden as you and Claude Code write code together.",
+  "description": "See you companion grow as you work.",
   "version": "0.12.4",
   "type": "module",
   "publisher": "saramorillon",
