@@ -57,7 +57,7 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
   }
 
   protected getTilesetUri(webview: Webview) {
-    return this.getUri(webview, AtlasManager.getImage()).toString()
+    return this.getUri(webview, 'src', AtlasManager.getImage()).toString()
   }
 
   protected renderHtml(webview: Webview): string {
@@ -67,7 +67,13 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
 <html>
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src ${server} ws://localhost:5173; script-src ${server} 'unsafe-inline' 'unsafe-eval'; style-src ${server} 'unsafe-inline';">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    img-src ${server} ${webview.cspSource} data:;
+    style-src ${server} 'unsafe-inline';
+    script-src ${server} 'unsafe-inline' 'unsafe-eval';
+    connect-src ${server} ${server.replace('http', 'ws')};
+  " />
 </head>
 <body>
   <script type="module" src="${server}/@vite/client"></script>
@@ -84,7 +90,12 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} data:; style-src ${webview.cspSource}; script-src ${webview.cspSource};" />
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'none';
+    img-src ${webview.cspSource} data:;
+    style-src ${webview.cspSource};
+    script-src ${webview.cspSource};
+  " />
   <link rel="stylesheet" href="${styleUri.toString()}" />
 </head>
 <body>
