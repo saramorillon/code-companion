@@ -57,7 +57,7 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
   }
 
   protected getTilesetUri(webview: Webview) {
-    return this.getUri(webview, 'src', AtlasManager.getImage()).toString()
+    return this.getUri(webview, 'media', AtlasManager.getImage()).toString()
   }
 
   protected renderHtml(webview: Webview): string {
@@ -84,7 +84,8 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
     }
 
     const scriptUri = this.getUri(webview, 'dist', 'views', this.viewName, 'App.js')
-    const styleUri = this.getUri(webview, 'dist', 'views', this.viewName, 'styles.css')
+    const styleUri = this.getUri(webview, 'dist', 'views', this.viewName, 'App.css')
+    const sharedUri = this.getUri(webview, 'dist', 'views', 'shared', 'App.css')
 
     return `<!DOCTYPE html>
 <html lang="en">
@@ -97,6 +98,7 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
     script-src ${webview.cspSource};
   " />
   <link rel="stylesheet" href="${styleUri.toString()}" />
+  <link rel="stylesheet" href="${sharedUri.toString()}" />
 </head>
 <body>
   <script type="module" src="${scriptUri.toString()}"></script>

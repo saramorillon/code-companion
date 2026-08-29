@@ -33,6 +33,7 @@ export default defineConfig(({ mode }) => {
           companion: resolve(import.meta.dirname, 'src/views/companion/App.tsx'),
           pantry: resolve(import.meta.dirname, 'src/views/pantry/App.tsx'),
           stats: resolve(import.meta.dirname, 'src/views/stats/App.tsx'),
+          shared: resolve(import.meta.dirname, 'src/views/shared.css'),
         },
         output: {
           format: 'es',

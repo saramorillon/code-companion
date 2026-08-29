@@ -4,13 +4,9 @@ tests/**
 esbuild.js
 tsconfig.json
 pnpm-lock.yaml
+pnpm-workspace.yaml
+.vscode
 *.vsix
-!src/views/companion/**
-!src/views/pantry/**
-!src/views/stats/**
-!src/views/shared.css
-!tileset.png
-!tileset-atlas.json
 old
 .oxfmtrc.json
 .oxlintrc.json
