@@ -25,12 +25,12 @@ function mockAppState(): AppState {
 
 describe(CompanionViewProvider.prototype['buildState'], () => {
   it('should return null if view is undefined', () => {
-    const provider = new CompanionViewProvider()
+    const provider = new CompanionViewProvider(true)
     expect(provider['buildState'](mockAppState())).toBeNull()
   })
 
   it('should return null if species cannot be found', () => {
-    const provider = new CompanionViewProvider()
+    const provider = new CompanionViewProvider(true)
     provider['view'] = {} as never
     const state = mockAppState()
     state.active.speciesId = 'not found'
@@ -38,7 +38,7 @@ describe(CompanionViewProvider.prototype['buildState'], () => {
   })
 
   it('should return companion props', () => {
-    const provider = new CompanionViewProvider()
+    const provider = new CompanionViewProvider(true)
     provider['view'] = {} as never
     provider['getTilesetUri'] = vi.fn().mockReturnValue('tilesetUri')
     const state = mockAppState()

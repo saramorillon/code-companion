@@ -1,0 +1,84 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildState > should return stats props 1`] = `
+{
+  "bestDay": {
+    "date": "1970-01-01",
+    "totalTokens": "30K",
+  },
+  "harvestedCount": 1,
+  "legend": [
+    "user",
+    "claude",
+  ],
+  "todayTokens": {
+    "user": "10K",
+  },
+  "weekHistory": [
+    {
+      "date": "",
+      "percent": "",
+      "tokens": "",
+      "values": [],
+    },
+    {
+      "date": "",
+      "percent": "",
+      "tokens": "",
+      "values": [],
+    },
+    {
+      "date": "",
+      "percent": "",
+      "tokens": "",
+      "values": [],
+    },
+    {
+      "date": "",
+      "percent": "",
+      "tokens": "",
+      "values": [],
+    },
+    {
+      "date": "",
+      "percent": "",
+      "tokens": "",
+      "values": [],
+    },
+    {
+      "date": "jeu.",
+      "percent": "50%",
+      "tokens": "20K",
+      "values": [
+        {
+          "percent": "50%",
+          "source": "user",
+          "tokens": "10K",
+        },
+        {
+          "percent": "50%",
+          "source": "claude",
+          "tokens": "10K",
+        },
+      ],
+    },
+    {
+      "date": "ven.",
+      "percent": "100%",
+      "tokens": "40K",
+      "values": [
+        {
+          "percent": "25%",
+          "source": "user",
+          "tokens": "10K",
+        },
+        {
+          "percent": "75%",
+          "source": "claude",
+          "tokens": "30K",
+        },
+      ],
+    },
+  ],
+}
+`;

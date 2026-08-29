@@ -10,14 +10,14 @@ class ViewProviderImpl extends AbstractViewProvider<null> {
 
 describe(AbstractViewProvider.prototype.start, () => {
   it('should initialize data', () => {
-    const provider = new ViewProviderImpl()
+    const provider = new ViewProviderImpl(true)
     const data = {} as never
     provider.start(data, {} as never)
     expect(provider['data']).toBe(data)
   })
 
   it('should initialize data', () => {
-    const provider = new ViewProviderImpl()
+    const provider = new ViewProviderImpl(true)
     const uri = { fsPath: 'fsPath' } as never
     provider.start({} as never, uri)
     expect(provider['extensionPath']).toBe('fsPath')
@@ -26,14 +26,14 @@ describe(AbstractViewProvider.prototype.start, () => {
 
 describe(AbstractViewProvider.prototype.resolveWebviewView, () => {
   it('should initialize data', () => {
-    const provider = new ViewProviderImpl()
+    const provider = new ViewProviderImpl(true)
     const data = {} as never
     provider.start(data, {} as never)
     expect(provider['data']).toBe(data)
   })
 
   it('should initialize data', () => {
-    const provider = new ViewProviderImpl()
+    const provider = new ViewProviderImpl(true)
     const uri = { fsPath: 'fsPath' } as never
     provider.start({} as never, uri)
     expect(provider['extensionPath']).toBe('fsPath')

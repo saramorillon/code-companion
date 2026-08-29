@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
         emptyOutDir: false,
         sourcemap: true,
         lib: {
-          entry: resolve(__dirname, 'src/extension.ts'),
+          entry: resolve(import.meta.dirname, 'src/extension.ts'),
           formats: ['es'],
           fileName: () => 'extension.js',
         },
@@ -30,9 +30,9 @@ export default defineConfig(({ mode }) => {
       sourcemap: true,
       rollupOptions: {
         input: {
-          companion: resolve(__dirname, 'src/views/companion/App.tsx'),
-          pantry: resolve(__dirname, 'src/views/pantry/App.tsx'),
-          stats: resolve(__dirname, 'src/views/stats/App.tsx'),
+          companion: resolve(import.meta.dirname, 'src/views/companion/App.tsx'),
+          pantry: resolve(import.meta.dirname, 'src/views/pantry/App.tsx'),
+          stats: resolve(import.meta.dirname, 'src/views/stats/App.tsx'),
         },
         output: {
           format: 'es',

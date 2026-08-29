@@ -1,0 +1,809 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildState > should return pantry props 1`] = `
+{
+  "shelves": [
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 207,
+          },
+        },
+        "normal": {
+          "count": 1,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 207,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 207,
+          },
+        },
+      },
+      "category": "tree",
+      "speciesName": "Apple tree",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 704,
+            "y": 207,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 192,
+            "y": 207,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 448,
+            "y": 207,
+          },
+        },
+      },
+      "category": "tree",
+      "speciesName": "Peach tree",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 736,
+            "y": 207,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 224,
+            "y": 207,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 480,
+            "y": 207,
+          },
+        },
+      },
+      "category": "tree",
+      "speciesName": "Pear tree",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 239,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 239,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 239,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Corn",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 271,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 271,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 271,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Wheat",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 303,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 303,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 303,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Tomato",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 335,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 335,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 335,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Potato",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 367,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 367,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 367,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Carrot",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 399,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 399,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 399,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Strawberry",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 431,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 431,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 431,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Grapes",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 463,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 463,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 463,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Cabbage",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 495,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 495,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 495,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Pumpkin",
+    },
+  ],
+  "tilesetUri": "tilesetUri",
+}
+`;
+
+exports[`buildState > should skip unknown species 1`] = `
+{
+  "shelves": [
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 207,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 207,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 207,
+          },
+        },
+      },
+      "category": "tree",
+      "speciesName": "Apple tree",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 704,
+            "y": 207,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 192,
+            "y": 207,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 448,
+            "y": 207,
+          },
+        },
+      },
+      "category": "tree",
+      "speciesName": "Peach tree",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 736,
+            "y": 207,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 224,
+            "y": 207,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 480,
+            "y": 207,
+          },
+        },
+      },
+      "category": "tree",
+      "speciesName": "Pear tree",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 239,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 239,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 239,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Corn",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 271,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 271,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 271,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Wheat",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 303,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 303,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 303,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Tomato",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 335,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 335,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 335,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Potato",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 367,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 367,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 367,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Carrot",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 399,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 399,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 399,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Strawberry",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 431,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 431,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 431,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Grapes",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 463,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 463,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 463,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Cabbage",
+    },
+    {
+      "baskets": {
+        "gold": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 672,
+            "y": 495,
+          },
+        },
+        "normal": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 160,
+            "y": 495,
+          },
+        },
+        "silver": {
+          "count": 0,
+          "rect": {
+            "height": 17,
+            "width": 32,
+            "x": 416,
+            "y": 495,
+          },
+        },
+      },
+      "category": "crop",
+      "speciesName": "Pumpkin",
+    },
+  ],
+  "tilesetUri": "tilesetUri",
+}
+`;

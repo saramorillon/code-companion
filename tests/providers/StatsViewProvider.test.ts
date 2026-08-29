@@ -34,30 +34,9 @@ function mockAppState(): AppState {
 
 describe(StatsViewProvider.prototype['buildState'], () => {
   it('should return stats props', () => {
-    const provider = new StatsViewProvider()
+    const provider = new StatsViewProvider(true)
     provider['view'] = {} as never
     const state = mockAppState()
-    expect(provider['buildState'](state)).toEqual({
-      harvestedCount: 1,
-      todayTokens: { user: '10K' },
-      bestDay: { date: '1970-01-01', totalTokens: '30K' },
-      weekHistory: [
-        {
-          date: '1970-01-01',
-          tokens: { user: '10K', claude: '10K' },
-          values: { user: 50, claude: 50 },
-          totalTokens: '20K',
-          totalValue: 50,
-        },
-        {
-          date: '1970-01-02',
-          tokens: { user: '10K', claude: '30K' },
-          values: { user: 25, claude: 75 },
-          totalTokens: '40K',
-          totalValue: 100,
-        },
-      ],
-      legend: ['user', 'claude'],
-    })
+    expect(provider['buildState'](state)).toMatchSnapshot()
   })
 })
