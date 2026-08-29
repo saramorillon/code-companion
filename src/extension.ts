@@ -1,4 +1,4 @@
-import { ExtensionContext, workspace, commands, window } from 'vscode'
+import { commands, ExtensionContext, ExtensionMode, window, workspace } from 'vscode'
 import { DataManager } from './manager/DataManager.js'
 import { AbstractViewProvider } from './providers/AbstractViewProvider.js'
 import { CompanionViewProvider } from './providers/CompanionViewProvider.js'
@@ -18,13 +18,8 @@ const trackers: Record<Provider, AbstractTracker> = {
   claude: new ClaudeTracker(),
 }
 
-const viewProviders: Record<string, AbstractViewProvider<unknown>> = {
-  companion: new CompanionViewProvider(),
-  pantry: new PantryViewProvider(),
-  stats: new StatsViewProvider(),
-}
-
 export async function activate(context: ExtensionContext) {
+  const isDev = context.extensionMode === ExtensionMode.Development
   const storageDir = context.globalStorageUri.fsPath
 
   dataManager = new DataManager(storageDir)
@@ -32,6 +27,12 @@ export async function activate(context: ExtensionContext) {
 
   for (const tracker of Object.values(trackers)) {
     await tracker.start(dataManager.state)
+  }
+
+  const viewProviders: Record<string, AbstractViewProvider<unknown>> = {
+    companion: new CompanionViewProvider(isDev),
+    pantry: new PantryViewProvider(isDev),
+    stats: new StatsViewProvider(isDev),
   }
 
   for (const viewProvider of Object.values(viewProviders)) {

@@ -1,3 +1,4 @@
+import './styles.css'
 import { render } from 'preact'
 import { CATEGORY_ICONS } from '../../constants.js'
 import { Category, Rarity, Rect } from '../../types.js'

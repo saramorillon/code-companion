@@ -1,3 +1,4 @@
+import './styles.css'
 import { Fragment, render } from 'preact'
 import { formatRelativeDate } from '../../utils/format.js'
 import { WithMessage } from '../WithMessage.js'

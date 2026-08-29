@@ -2,7 +2,7 @@
   "include": ["src", "tests"],
   "compilerOptions": {
     "rootDir": ".",
-    "types": ["vitest/globals", "node"],
+    "types": ["node", "vite/client", "vitest/globals"],
     "module": "nodenext",
     "target": "esnext",
     "jsx": "react-jsx",

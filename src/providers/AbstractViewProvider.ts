@@ -11,6 +11,8 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
   protected isReady = false
   protected extensionPath = ''
 
+  constructor(private isDev: boolean) {}
+
   start(data: AppState, extensionUri: Uri) {
     this.data = data
     this.extensionPath = extensionUri.fsPath
@@ -59,20 +61,34 @@ export abstract class AbstractViewProvider<T> implements WebviewViewProvider {
   }
 
   protected renderHtml(webview: Webview): string {
+    if (this.isDev) {
+      const server = 'http://localhost:5173'
+      return `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; connect-src ${server} ws://localhost:5173; script-src ${server} 'unsafe-inline' 'unsafe-eval'; style-src ${server} 'unsafe-inline';">
+</head>
+<body>
+  <script type="module" src="${server}/@vite/client"></script>
+  <script type="module" src="${server}/src/views/${this.viewName}/App.tsx"></script>
+</body>
+</html>
+  `
+    }
+
     const scriptUri = this.getUri(webview, 'dist', 'views', this.viewName, 'App.js')
-    const styleUri = this.getUri(webview, 'src', 'views', this.viewName, 'styles.css')
-    const sharedStyleUri = this.getUri(webview, 'src', 'views', 'shared.css')
+    const styleUri = this.getUri(webview, 'dist', 'views', this.viewName, 'styles.css')
 
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; img-src ${webview.cspSource} data:; style-src ${webview.cspSource}; script-src ${webview.cspSource};" />
-  <link rel="stylesheet" href="${sharedStyleUri.toString()}" />
   <link rel="stylesheet" href="${styleUri.toString()}" />
 </head>
 <body>
-  <script src="${scriptUri.toString()}"></script>
+  <script type="module" src="${scriptUri.toString()}"></script>
 </body>
 </html>`
   }
