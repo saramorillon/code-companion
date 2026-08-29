@@ -6,7 +6,7 @@ import { IStatsProps } from '../views/stats/App.js'
 import { AbstractViewProvider } from './AbstractViewProvider.js'
 
 export class StatsViewProvider extends AbstractViewProvider<IStatsProps> {
-  override readonly viewId = 'codecompanion.stats'
+  override readonly viewId = 'devcompanion.stats'
   override readonly viewName = 'stats'
 
   protected override buildState(state: AppState): IStatsProps | null {

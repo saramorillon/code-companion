@@ -64,7 +64,7 @@ export async function activate(context: ExtensionContext) {
 
   context.subscriptions.push(
     workspace.onDidChangeConfiguration((event) => {
-      if (event.affectsConfiguration('codecompanion.refreshIntervalSeconds')) {
+      if (event.affectsConfiguration('devcompanion.refreshIntervalSeconds')) {
         scheduleRefresh(refresh)
       }
     }),
@@ -79,7 +79,7 @@ export async function activate(context: ExtensionContext) {
   )
 
   context.subscriptions.push(
-    commands.registerCommand('codecompanion.refresh', () => {
+    commands.registerCommand('devcompanion.refresh', () => {
       void refresh()
     }),
   )
@@ -89,7 +89,7 @@ function scheduleRefresh(refresh: () => Promise<void>): void {
   if (refreshTimer) {
     clearInterval(refreshTimer)
   }
-  const seconds = workspace.getConfiguration('codecompanion').get<number>('refreshIntervalSeconds', 90)
+  const seconds = workspace.getConfiguration('devcompanion').get<number>('refreshIntervalSeconds', 90)
   refreshTimer = setInterval(refresh, seconds * 1000)
 }
 

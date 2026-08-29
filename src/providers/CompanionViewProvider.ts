@@ -6,7 +6,7 @@ import { ICompanionProps } from '../views/companion/App.js'
 import { AbstractViewProvider } from './AbstractViewProvider.js'
 
 export class CompanionViewProvider extends AbstractViewProvider<ICompanionProps> {
-  override readonly viewId = 'codecompanion.companion'
+  override readonly viewId = 'devcompanion.companion'
   override readonly viewName = 'companion'
 
   protected override buildState(state: AppState): ICompanionProps | null {

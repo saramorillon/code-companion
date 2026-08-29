@@ -1,8 +1,8 @@
 {
-  "name": "codecompanion",
+  "name": "devcompanion",
   "version": "0.12.4",
   "type": "module",
-  "displayName": "Code Companion",
+  "displayName": "Dev Companion",
   "description": "See you companion grow as you work.",
   "author": "Sara Morillon",
   "publisher": "saramorillon",
@@ -24,7 +24,7 @@
   "contributes": {
     "commands": [
       {
-        "command": "codecompanion.refresh",
+        "command": "devcompanion.refresh",
         "title": "Refresh",
         "icon": "$(refresh)"
       }
@@ -32,8 +32,8 @@
     "menus": {
       "view/title": [
         {
-          "command": "codecompanion.refresh",
-          "when": "view == codecompanion.companion || view == codecompanion.stats || view == codecompanion.pantry",
+          "command": "devcompanion.refresh",
+          "when": "view == devcompanion.companion || view == devcompanion.stats || view == devcompanion.pantry",
           "group": "navigation"
         }
       ]
@@ -41,28 +41,28 @@
     "viewsContainers": {
       "activitybar": [
         {
-          "id": "codecompanion",
-          "title": "codecompanion",
+          "id": "devcompanion",
+          "title": "devcompanion",
           "icon": "media/activitybar-icon.svg"
         }
       ]
     },
     "views": {
-      "codecompanion": [
+      "devcompanion": [
         {
-          "id": "codecompanion.companion",
+          "id": "devcompanion.companion",
           "name": "Companion",
           "type": "webview",
           "icon": "media/activitybar-icon.svg"
         },
         {
-          "id": "codecompanion.stats",
+          "id": "devcompanion.stats",
           "name": "Stats",
           "type": "webview",
           "icon": "media/activitybar-icon.svg"
         },
         {
-          "id": "codecompanion.pantry",
+          "id": "devcompanion.pantry",
           "name": "Pantry",
           "type": "webview",
           "icon": "media/activitybar-icon.svg"
@@ -70,9 +70,9 @@
       ]
     },
     "configuration": {
-      "title": "codecompanion",
+      "title": "devcompanion",
       "properties": {
-        "codecompanion.refreshIntervalSeconds": {
+        "devcompanion.refreshIntervalSeconds": {
           "type": "number",
           "default": 90,
           "minimum": 60,

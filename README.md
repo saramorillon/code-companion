@@ -1,16 +1,16 @@
-# Code Companion
+# Dev Companion
 
 🌱 See your companion grow as you work 🌳
 
-Code Companion is a VS Code extension that turns your coding activity into a small farming/gardening game. The more you write, the more your companion grows — until it's ready to harvest.
+Dev Companion is a VS Code extension that turns your coding activity into a small farming/gardening game. The more you write, the more your companion grows — until it's ready to harvest.
 
 ## How it works
 
-Code Companion tracks "tokens" earned from the characters you type in the active editor. These tokens feed a growing plant or tree. As tokens accumulate, the companion advances through growth stages. Once it reaches its final stage, it's harvested, added to your pantry, and a new random companion starts growing.
+Dev Companion tracks "tokens" earned from the characters you type in the active editor. These tokens feed a growing plant or tree. As tokens accumulate, the companion advances through growth stages. Once it reaches its final stage, it's harvested, added to your pantry, and a new random companion starts growing.
 
 ## Views
 
-The extension adds a **Code Companion** panel to the activity bar with three webviews:
+The extension adds a **Dev Companion** panel to the activity bar with three webviews:
 
 - **Companion** — shows your current growing plant/tree, its stage, and progress to the next stage or harvest
 - **Stats** — harvested count, today's token breakdown by source, best day on record, and a 7-day activity chart
@@ -20,13 +20,13 @@ Each view has a refresh button, and data auto-refreshes on an interval (see sett
 
 ## Settings
 
-| Setting                                | Default | Description                                         |
-| -------------------------------------- | ------- | --------------------------------------------------- |
-| `codecompanion.refreshIntervalSeconds` | `90`    | How often to rescan usage logs, in seconds (60–900) |
+| Setting                               | Default | Description                                         |
+| ------------------------------------- | ------- | --------------------------------------------------- |
+| `devcompanion.refreshIntervalSeconds` | `90`    | How often to rescan usage logs, in seconds (60–900) |
 
 ## Claude Code integration
 
-In addition to your own typing, Code Companion also tracks token usage from Claude Code's local session logs (`~/.claude/projects/**/*.jsonl`), so time spent working with Claude Code also contributes to your companion's growth. The logs directory is read from the `CLAUDE_CONFIG_DIR` environment variable if set, falling back to `~/.claude`.
+In addition to your own typing, Dev Companion also tracks token usage from Claude Code's local session logs (`~/.claude/projects/**/*.jsonl`), so time spent working with Claude Code also contributes to your companion's growth. The logs directory is read from the `CLAUDE_CONFIG_DIR` environment variable if set, falling back to `~/.claude`.
 
 ## Data
 

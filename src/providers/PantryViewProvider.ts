@@ -4,7 +4,7 @@ import { IPantryProps } from '../views/pantry/App.js'
 import { AbstractViewProvider } from './AbstractViewProvider.js'
 
 export class PantryViewProvider extends AbstractViewProvider<IPantryProps> {
-  override readonly viewId = 'codecompanion.pantry'
+  override readonly viewId = 'devcompanion.pantry'
   override readonly viewName = 'pantry'
 
   protected override buildState(state: AppState): IPantryProps | null {
