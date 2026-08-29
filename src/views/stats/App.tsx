@@ -60,6 +60,7 @@ function App({ harvestedCount, todayTokens, bestDay, weekHistory, legend }: ISta
       <div class="chart">
         {weekHistory.map((day) => (
           <div
+            key={day.date}
             class="bar-outer"
             title={
               day.date &&
@@ -80,7 +81,7 @@ function App({ harvestedCount, todayTokens, bestDay, weekHistory, legend }: ISta
           </div>
         ))}
         {weekHistory.map((day) => (
-          <small>{day.date}</small>
+          <small key={day.date}>{day.date}</small>
         ))}
       </div>
 

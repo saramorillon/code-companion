@@ -3,5 +3,20 @@
   "options": {
     "typeAware": true
   },
-  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "promise", "node"]
+  "plugins": ["eslint", "typescript", "unicorn", "oxc", "import", "promise", "node"],
+  "overrides": [
+    {
+      "files": ["**/views/**/*"],
+      "plugins": ["react", "jsx-a11y"]
+    },
+    {
+      "files": ["**/tests/**/*"],
+      "plugins": ["vitest"],
+      "rules": {
+        "typescript/unbound-method": "off",
+        "vitest/require-mock-type-parameters": "off",
+        "vitest/valid-title": ["off", { "ignoreTypeOfDescribeName": true }]
+      }
+    }
+  ]
 }
