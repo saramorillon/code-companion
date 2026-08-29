@@ -111,6 +111,8 @@ export class DataManager {
       return
     }
 
+    console.log(this.state.active.tokens, totalTokens)
+
     if (this.state.active.tokens >= totalTokens) {
       this.state.harvests.push({
         speciesId: this.state.active.speciesId,

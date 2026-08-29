@@ -1,7 +1,10 @@
-import './styles.css'
 import { Fragment, render } from 'preact'
 import { formatRelativeDate } from '../../utils/format.js'
+import '../shared.css'
 import { WithMessage } from '../WithMessage.js'
+import './styles.css'
+
+const COLORS = ['red', 'blue', 'yellow', 'orange', 'green', 'purple']
 
 export interface IStatsProps {
   harvestedCount: number
@@ -12,10 +15,13 @@ export interface IStatsProps {
   }
   weekHistory: {
     date: string
-    totalValue: number
-    values: Record<string, number>
-    totalTokens: string
-    tokens: Record<string, string>
+    percent: string
+    tokens: string
+    values: {
+      source: string
+      percent: string
+      tokens: string
+    }[]
   }[]
   legend: string[]
 }
@@ -23,57 +29,68 @@ export interface IStatsProps {
 function App({ harvestedCount, todayTokens, bestDay, weekHistory, legend }: IStatsProps) {
   return (
     <>
-      <div className="stat-row">
-        <span className="stat-label">Harvested</span>
-        <span className="stat-value">{harvestedCount}</span>
-      </div>
-      <div className="stat-section">
+      <dl>
+        <dt>Harvested</dt>
+        <dd>{harvestedCount}</dd>
+      </dl>
+
+      <hr />
+
+      <h4>Today's tokens</h4>
+      <dl>
         {Object.entries(todayTokens).map(([name, value]) => (
-          <div key={name} className="stat-row">
-            <span className="stat-label">{name}</span>
-            <span className="stat-value">{value}</span>
+          <Fragment key={name}>
+            <dt>{name}</dt>
+            <dd>{value}</dd>
+          </Fragment>
+        ))}
+      </dl>
+
+      <hr />
+
+      <h4>🏆 Best day</h4>
+      <p>
+        {bestDay.totalTokens} · {bestDay.date} · {formatRelativeDate(bestDay.date)}
+      </p>
+
+      <hr />
+
+      <h4>Last 7 days</h4>
+
+      <div class="chart">
+        {weekHistory.map((day) => (
+          <div
+            class="bar-outer"
+            title={
+              day.date &&
+              `Total: ${day.tokens} | ${day.values.map((value) => `${value.source}: ${value.tokens}`).join(' | ')}`
+            }
+          >
+            <div key={day.date} class="bar" style={{ height: day.percent }}>
+              {day.values.map((value, index) => (
+                <div
+                  key={value.source}
+                  style={{
+                    height: value.percent,
+                    backgroundColor: `var(--vscode-charts-${COLORS[index % COLORS.length]})`,
+                  }}
+                />
+              ))}
+            </div>
           </div>
         ))}
-        {bestDay && (
-          <div className="stat-row">
-            <span className="stat-label">🏆 Best day</span>
-            <span className="stat-value">
-              {bestDay.totalTokens} · {bestDay.date} · {formatRelativeDate(bestDay.date)}
-            </span>
-          </div>
-        )}
+        {weekHistory.map((day) => (
+          <small>{day.date}</small>
+        ))}
       </div>
-      <div className="stat-section">
-        <div id="week-chart">
-          {weekHistory.map((day) => {
-            return (
-              <div className="week-bar-column" key={day.date}>
-                <div
-                  className="week-bar-stack"
-                  style={{ '--value': `${day.totalValue}%` }}
-                  title={`${day.totalTokens} ${Object.entries(day.tokens)
-                    .map(([name, value]) => `${name}: ${value}`)
-                    .join(' / ')}`}
-                >
-                  {Object.entries(day.tokens).map(([name, value]) => (
-                    <div key={name} className="week-bar" style={{ '--value': `${value}%` }} />
-                  ))}
-                </div>
-                <div className="week-bar-label">{day.date}</div>
-              </div>
-            )
-          })}
-        </div>
 
-        <div className="legend-row">
-          {legend.map((name) => (
-            <Fragment key={name}>
-              <span className="legend-dot" />
-              <span className="legend-label">{name}</span>
-            </Fragment>
-          ))}
-        </div>
-      </div>
+      <ul>
+        {legend.map((source, index) => (
+          <li key={source}>
+            <span style={{ color: `var(--vscode-charts-${COLORS[index % COLORS.length]})` }}>●</span> {source}
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

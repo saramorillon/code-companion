@@ -1,9 +1,10 @@
-import './styles.css'
 import { render } from 'preact'
 import { CATEGORY_ICONS } from '../../constants.js'
 import { Category, Rarity, Rect } from '../../types.js'
 import { Sprite } from '../components/Sprite.js'
+import '../shared.css'
 import { WithMessage } from '../WithMessage.js'
+import './styles.css'
 
 export interface ICompanionProps {
   tilesetUri: string
@@ -32,23 +33,17 @@ function App({
 
   return (
     <>
-      <div id="sprite-container">
-        <Sprite rect={rect} tilesetUri={tilesetUri} scale={3} />
-      </div>
-      <div id="info">
-        <div id="name-row">
-          <span id="name">
-            {CATEGORY_ICONS[category]} {speciesName}
-          </span>
-          <span className={`rarity-star ${rarity}`} />
-        </div>
-        <div id="progress-bar">
-          <div id="progress-fill" style={{ '--progress': `${progress}%` }} />
-        </div>
-        <div id="remaining-text">
-          Stage {currentStage + 1} / {totalStages} · {nextStageTokens} to {nextStage}
-        </div>
-      </div>
+      <Sprite rect={rect} tilesetUri={tilesetUri} scale={2} />
+      <h4>
+        {CATEGORY_ICONS[category]} {speciesName} <span class={`rarity-${rarity}`}>★</span>
+      </h4>
+
+      <progress max="100" value={progress}>
+        70%
+      </progress>
+      <label>
+        Stage {currentStage + 1} / {totalStages} · {nextStageTokens} to {nextStage}
+      </label>
     </>
   )
 }

@@ -8,9 +8,9 @@ interface ISpriteProps {
 
 export function Sprite({ rect, tilesetUri, scale = 1 }: ISpriteProps) {
   return (
-    <div id="sprite-outer" style={{ width: `${rect.width * scale}px`, height: `${rect.height * scale}px` }}>
+    <div class="sprite-outer" style={{ width: `${rect.width * scale}px`, height: `${rect.height * scale}px` }}>
       <div
-        id="sprite"
+        class="sprite"
         style={{
           width: `${rect.width}px`,
           height: `${rect.height}px`,

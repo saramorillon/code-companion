@@ -34,9 +34,9 @@
         "gold": { "x": 512, "y": 208, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 192, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 192, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 192, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 207, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 207, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 207, "width": 32, "height": 17 }
       }
     },
     {
@@ -71,9 +71,9 @@
         "gold": { "x": 544, "y": 208, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 192, "y": 192, "width": 32, "height": 32 },
-        "silver": { "x": 448, "y": 192, "width": 32, "height": 32 },
-        "gold": { "x": 704, "y": 192, "width": 32, "height": 32 }
+        "normal": { "x": 192, "y": 207, "width": 32, "height": 17 },
+        "silver": { "x": 448, "y": 207, "width": 32, "height": 17 },
+        "gold": { "x": 704, "y": 207, "width": 32, "height": 17 }
       }
     },
     {
@@ -108,9 +108,9 @@
         "gold": { "x": 576, "y": 208, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 224, "y": 192, "width": 32, "height": 32 },
-        "silver": { "x": 480, "y": 192, "width": 32, "height": 32 },
-        "gold": { "x": 736, "y": 192, "width": 32, "height": 32 }
+        "normal": { "x": 224, "y": 207, "width": 32, "height": 17 },
+        "silver": { "x": 480, "y": 207, "width": 32, "height": 17 },
+        "gold": { "x": 736, "y": 207, "width": 32, "height": 17 }
       }
     },
     {
@@ -150,9 +150,9 @@
         "gold": { "x": 736, "y": 240, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 224, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 224, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 224, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 239, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 239, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 239, "width": 32, "height": 17 }
       }
     },
     {
@@ -192,9 +192,9 @@
         "gold": { "x": 736, "y": 272, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 256, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 256, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 256, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 271, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 271, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 271, "width": 32, "height": 17 }
       }
     },
     {
@@ -234,9 +234,9 @@
         "gold": { "x": 736, "y": 304, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 288, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 288, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 288, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 303, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 303, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 303, "width": 32, "height": 17 }
       }
     },
     {
@@ -276,9 +276,9 @@
         "gold": { "x": 736, "y": 336, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 320, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 320, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 320, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 335, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 335, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 335, "width": 32, "height": 17 }
       }
     },
     {
@@ -318,9 +318,9 @@
         "gold": { "x": 736, "y": 368, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 352, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 352, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 352, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 367, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 367, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 367, "width": 32, "height": 17 }
       }
     },
     {
@@ -360,9 +360,9 @@
         "gold": { "x": 736, "y": 400, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 384, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 384, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 384, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 399, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 399, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 399, "width": 32, "height": 17 }
       }
     },
     {
@@ -402,9 +402,9 @@
         "gold": { "x": 736, "y": 432, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 416, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 416, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 416, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 431, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 431, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 431, "width": 32, "height": 17 }
       }
     },
     {
@@ -444,9 +444,9 @@
         "gold": { "x": 736, "y": 464, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 448, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 448, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 448, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 463, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 463, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 463, "width": 32, "height": 17 }
       }
     },
     {
@@ -486,9 +486,9 @@
         "gold": { "x": 736, "y": 496, "width": 16, "height": 16 }
       },
       "basketIcon": {
-        "normal": { "x": 160, "y": 480, "width": 32, "height": 32 },
-        "silver": { "x": 416, "y": 480, "width": 32, "height": 32 },
-        "gold": { "x": 672, "y": 480, "width": 32, "height": 32 }
+        "normal": { "x": 160, "y": 495, "width": 32, "height": 17 },
+        "silver": { "x": 416, "y": 495, "width": 32, "height": 17 },
+        "gold": { "x": 672, "y": 495, "width": 32, "height": 17 }
       }
     }
   ]

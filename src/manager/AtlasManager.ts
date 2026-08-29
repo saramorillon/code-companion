@@ -10,6 +10,10 @@ export const AtlasManager = {
     return atlas.image
   },
 
+  getSpecies() {
+    return atlas.species
+  },
+
   pickRandomSpecies() {
     return {
       speciesId: random(atlas.species).id,

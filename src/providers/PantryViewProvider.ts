@@ -12,32 +12,29 @@ export class PantryViewProvider extends AbstractViewProvider<IPantryProps> {
       return null
     }
 
-    const baskets: IPantryProps['baskets'] = {}
-    for (const entry of state.harvests) {
-      const key = `${entry.speciesId}-${entry.rarity}`
-
-      if (baskets[key]) {
-        baskets[key].count++
-        continue
-      }
-
-      const species = AtlasManager.getSpeciesById(entry.speciesId)
-      if (!species) {
-        continue
-      }
-
-      baskets[key] = {
-        rect: species.harvestIcon[entry.rarity],
+    const shelves: Record<string, IPantryProps['shelves'][number]> = {}
+    for (const species of AtlasManager.getSpecies()) {
+      shelves[species.id] = {
         speciesName: species.name,
         category: species.category,
-        rarity: entry.rarity,
-        count: 1,
+        baskets: {
+          normal: { rect: species.basketIcon.normal, count: 0 },
+          silver: { rect: species.basketIcon.silver, count: 0 },
+          gold: { rect: species.basketIcon.gold, count: 0 },
+        },
+      }
+    }
+
+    for (const harvest of state.harvests) {
+      const shelf = shelves[harvest.speciesId]
+      if (shelf) {
+        shelf.baskets[harvest.rarity].count++
       }
     }
 
     return {
       tilesetUri: this.getTilesetUri(this.view.webview),
-      baskets,
+      shelves: Object.values(shelves),
     }
   }
 }

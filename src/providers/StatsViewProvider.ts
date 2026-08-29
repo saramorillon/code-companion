@@ -15,19 +15,20 @@ export class StatsViewProvider extends AbstractViewProvider<IStatsProps> {
     const weekHistory: IStatsProps['weekHistory'] = []
     for (const history of state.weekHistory) {
       const totalTokens = sum(Object.values(history.tokens))
-      const tokens = Object.fromEntries(
-        Object.entries(history.tokens).map(([key, value]) => [key, formatTokens(value)]),
-      )
-      const values = Object.fromEntries(
-        Object.entries(history.tokens).map(([key, value]) => [key, (value / totalTokens) * 100]),
-      )
       weekHistory.push({
-        date: history.date,
-        totalValue: (totalTokens / maxTokens) * 100,
-        totalTokens: formatTokens(totalTokens),
-        tokens,
-        values,
+        date: new Intl.DateTimeFormat(undefined, { weekday: 'short' }).format(new Date(history.date)),
+        percent: `${(totalTokens / maxTokens) * 100}%`,
+        tokens: formatTokens(totalTokens),
+        values: Object.entries(history.tokens).map(([source, value]) => ({
+          source,
+          percent: `${(value / totalTokens) * 100}%`,
+          tokens: formatTokens(value),
+        })),
       })
+    }
+
+    while (weekHistory.length < 7) {
+      weekHistory.unshift({ date: '', percent: '', tokens: '', values: [] })
     }
 
     const totalTokens = formatTokens(sum(Object.values(state.bestDay.tokens)))
