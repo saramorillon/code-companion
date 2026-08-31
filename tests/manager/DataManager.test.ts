@@ -189,16 +189,6 @@ describe(DataManager.prototype.updateToday, () => {
 })
 
 describe(DataManager.prototype.updateHistory, () => {
-  it('should remove history entries older than 7 days', () => {
-    const manager = new DataManager('dir')
-    manager.state.weekHistory = [
-      { date: '1969-12-24', tokens: { name: 5 } },
-      { date: '1969-12-25', tokens: { name: 5 } },
-    ]
-    manager.updateHistory()
-    expect(manager.state.weekHistory).toEqual([{ date: '1969-12-25', tokens: { name: 5 } }])
-  })
-
   it('should create a new history entry for today if none exists', () => {
     const manager = new DataManager('dir')
     manager.state.today.tokens = { name: 10 }
@@ -206,20 +196,25 @@ describe(DataManager.prototype.updateHistory, () => {
     expect(manager.state.weekHistory).toEqual([{ date: '1970-01-01', tokens: { name: 10 } }])
   })
 
-  it("should initiliaze new tokens counter in today's history entry", () => {
+  it("should update today's history entry", () => {
     const manager = new DataManager('dir')
-    manager.state.weekHistory = [{ date: '1970-01-01', tokens: { other: 5 } }]
-    manager.state.today.tokens = { name: 10 }
+    manager.state.weekHistory = [{ date: '1970-01-01', tokens: { name: 10 } }]
+    manager.state.today.tokens = { name: 20, other: 5 }
     manager.updateHistory()
-    expect(manager.state.weekHistory).toEqual([{ date: '1970-01-01', tokens: { other: 5, name: 10 } }])
+    expect(manager.state.weekHistory).toEqual([{ date: '1970-01-01', tokens: { name: 20, other: 5 } }])
   })
 
-  it('should add tokens to existing history entry for today', () => {
+  it('should remove history entries older than 7 days', () => {
     const manager = new DataManager('dir')
-    manager.state.weekHistory = [{ date: '1970-01-01', tokens: { name: 5 } }]
-    manager.state.today.tokens = { name: 10 }
+    manager.state.weekHistory = [
+      { date: '1969-12-24', tokens: { name: 5 } },
+      { date: '1969-12-25', tokens: { name: 5 } },
+    ]
     manager.updateHistory()
-    expect(manager.state.weekHistory).toEqual([{ date: '1970-01-01', tokens: { name: 15 } }])
+    expect(manager.state.weekHistory).toEqual([
+      { date: '1969-12-25', tokens: { name: 5 } },
+      { date: '1970-01-01', tokens: {} },
+    ])
   })
 })
 

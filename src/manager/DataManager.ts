@@ -78,16 +78,11 @@ export class DataManager {
     const sevenDaysAgo = formatLocaleDate(new Date(now.getTime() - ms_7days))
     this.state.weekHistory = this.state.weekHistory.filter((history) => history.date >= sevenDaysAgo)
 
-    const history = Object.fromEntries(this.state.weekHistory.map((history) => [history.date, history.tokens]))
-    const today = formatLocaleDate(now)
-    for (const [key, tokens] of Object.entries(this.state.today.tokens)) {
-      if (history[today]) {
-        history[today][key] = (history[today][key] ?? 0) + tokens
-      } else {
-        history[today] = { [key]: tokens }
-      }
+    const today = formatLocaleDate(new Date())
+    if (this.state.weekHistory.at(-1)?.date === today) {
+      this.state.weekHistory = this.state.weekHistory.slice(0, -1)
     }
-    this.state.weekHistory = Object.entries(history).map(([date, tokens]) => ({ date, tokens }))
+    this.state.weekHistory.push({ date: today, tokens: { ...this.state.today.tokens } })
   }
 
   updateBestDay() {
